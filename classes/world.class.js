@@ -1,11 +1,10 @@
 class World {
-
-    air = new Air();
-
     backgoundobjects = [
+        new BackgroundObject('../img/5_background/layers/air.png', 0),
         new BackgroundObject('../img/5_background/layers/3_third_layer/1.png', 0),
         new BackgroundObject('../img/5_background/layers/2_second_layer/1.png', 0),
         new BackgroundObject('../img/5_background/layers/1_first_layer/1.png', 0)
+        
     ]
     
     character = new Character();
@@ -38,8 +37,6 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
         this.ctx.translate(this.camera_x,0)
-
-        this.addToMap(this.air)
 
         this.addObjectsToMap(this.backgoundobjects)
         
