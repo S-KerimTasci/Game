@@ -1,7 +1,8 @@
 class Character extends MovableObject {
 
-    height = 400;
-    width = 200;
+    height = 350;
+    width = 125;
+    y = 90
     imagesWalking = [
         '../img/2_character_pepe/2_walk/W-21.png',
         '../img/2_character_pepe/2_walk/W-22.png',
@@ -43,10 +44,7 @@ class Character extends MovableObject {
         setInterval(() => {
             this.walking_sound.pause();
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT ) {
-                let i = this.currentImage % this.imagesWalking.length;
-                let path = this.imagesWalking[i];
-                this.img = this.imageCache[path]
-                this.currentImage++
+                this.playAnimation(this.imagesWalking)
                 this.walking_sound.play();
             }
         }, 50)
