@@ -1,20 +1,10 @@
 class World {
-    backgoundobjects = [
-        new BackgroundObject('../img/5_background/layers/air.png', 0),
-        new BackgroundObject('../img/5_background/layers/3_third_layer/1.png', 0),
-        new BackgroundObject('../img/5_background/layers/2_second_layer/1.png', 0),
-        new BackgroundObject('../img/5_background/layers/1_first_layer/1.png', 0)
-        
-    ]
+    backgoundobjects = level1.backgoundobjects;
     
     character = new Character();
-    enemies = [
-        new Chicken(),
-        new Chicken(),
-        new Chicken()
-    ]
+    enemies = level1.enemies;
 
-    cloud = new Cloud();
+    cloud = level1.cloud;
     canvas;
     ctx;
     keyboard;
