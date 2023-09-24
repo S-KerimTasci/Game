@@ -1,15 +1,18 @@
-class Coin extends MovableObject{
+class Salsa extends MovableObject{
+
+    height = 100;
+    width = 80;
+    y = 330;
 
     imagesWalking = [
-        '../img/8_coin/coin_1.png',
-        '../img/8_coin/coin_2.png',
+        '../img/6_salsa_bottle/1_salsa_bottle_on_ground.png',
+        '../img/6_salsa_bottle/2_salsa_bottle_on_ground.png',
     ]
 
     constructor(){
         super().loadIMG(this.imagesWalking[0]);
         this.loadImages(this.imagesWalking);
         this.x = 250 + Math.random() * 1500;
-        this.y = 250 - Math.random() * 100;
         this.animate()
     }
 
