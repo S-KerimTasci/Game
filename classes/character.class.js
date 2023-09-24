@@ -13,6 +13,8 @@ class Character extends MovableObject {
     world;
     speed = 5;
 
+    walking_sound = new Audio('../audio/walking.mp3')
+
 
     constructor() {
         super().loadIMG('../img/2_character_pepe/2_walk/W-21.png')
@@ -22,6 +24,7 @@ class Character extends MovableObject {
     }
 
     animate() {
+        
         
         setInterval(() => {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
@@ -38,11 +41,13 @@ class Character extends MovableObject {
         }, 1000 / 60)
 
         setInterval(() => {
+            this.walking_sound.pause();
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT ) {
                 let i = this.currentImage % this.imagesWalking.length;
                 let path = this.imagesWalking[i];
                 this.img = this.imageCache[path]
                 this.currentImage++
+                this.walking_sound.play();
             }
         }, 50)
 
