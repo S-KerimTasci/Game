@@ -22,20 +22,36 @@ class MovableObject {
         });
     }
 
-    playAnimation(img){
+    playAnimation(img) {
         let i = this.currentImage % this.imagesWalking.length;
-            let path = img[i];
-            this.img = this.imageCache[path]
-            this.currentImage++
+        let path = img[i];
+        this.img = this.imageCache[path]
+        this.currentImage++
     }
 
     moveRight() {
-
+        this.x += this.speed;
+        this.otherDirection = false;
     }
 
     moveLeft() {
+        this.x -= this.speed;
+    }
+
+    applyGravity() {
         setInterval(() => {
-            this.x -= this.speed;
+            if (this.isAboveGround() || this.speedY > 0) {
+                this.y -= this.speedY;
+                this.speedY -= this.accelaration;
+            }
         }, 1000 / 60)
+    }
+
+    isAboveGround() {
+        return this.y < 150;
+    }
+
+    jump() {
+        this.speedY = 15;
     }
 }
