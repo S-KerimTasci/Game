@@ -12,6 +12,7 @@ class World {
         this.keyboard = keyboard
         this.draw();
         this.setWorld();
+        this.checkCollision();
     }
 
     setWorld() {
@@ -73,6 +74,17 @@ class World {
     flipImageBack(mo) {
         mo.x = mo.x * -1
         this.ctx.restore();
+    }
+
+    checkCollision(){
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                if (this.character.isColliding(enemy)) {
+                    this.character.hit();
+                    console.log('Collision! Pepes energy is', this.character.energy);
+                }
+            });
+        }, 200);
     }
 
 }
