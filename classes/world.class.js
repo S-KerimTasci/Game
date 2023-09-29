@@ -8,6 +8,7 @@ class World {
     statusbarHealth = new StatusbarHealth();
     statusbarCoin = new StatusbarCoin();
     statusbarBottle = new StatusbarBottle();
+    throwableObject = []
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -15,7 +16,7 @@ class World {
         this.keyboard = keyboard
         this.draw();
         this.setWorld();
-        this.checkCollision();
+        this.run();
     }
 
     setWorld() {
@@ -37,6 +38,8 @@ class World {
         this.addObjectsToMap(this.level.enemies)
 
         this.addObjectsToMap(this.level.object)
+
+        this.addObjectsToMap(this.throwableObject)
 
         this.ctx.translate(-this.camera_x, 0)
         //--------Space for fixed objects---------
@@ -86,15 +89,29 @@ class World {
         this.ctx.restore();
     }
 
-    checkCollision(){
+    run() {
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
-                    this.character.hit();
-                    this.statusbarHealth.setPercentage(this.character.energy)
-                    console.log('Collision! Pepes energy is', this.character.energy);
-                }
-            });
+            this.checkCollision();
+            this.checkThrowableObject();
         }, 200);
     }
+
+    checkCollision() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.hit();
+                this.statusbarHealth.setPercentage(this.character.energy)
+                console.log('Collision! Pepes energy is', this.character.energy);
+            }
+        });
+    }
+
+    checkThrowableObject(){
+        if (this.keyboard.ACTION) {
+            let bottle = new ThrowableObject (this.character.x +80 , this.character.y + 50)
+            this.throwableObject.push(bottle)
+        }
+    }
+
+
 }

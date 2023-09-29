@@ -3,6 +3,7 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     energy = 100;
     lastHit = 0;
+    accelaration = 1.5;
 
     playAnimation(img) {
         let i = this.currentImage % img.length;
@@ -25,11 +26,15 @@ class MovableObject extends DrawableObject {
                 this.y -= this.speedY;
                 this.speedY -= this.accelaration;
             }
-        }, 1000 / 60)
+        }, 1000 / 25)
     }
 
     isAboveGround() {
-        return this.y < 150;
+        if (this instanceof ThrowableObject) {
+            return true
+        } else {
+            return this.y < 150;
+        }
     }
 
     jump() {
@@ -38,33 +43,33 @@ class MovableObject extends DrawableObject {
 
     isColliding(mo) {
         return this.x + this.width > mo.x &&
-        this.y + this.height > mo.y &&
-        this.x < mo.x &&
-        this.y < mo.y + mo.height;
-        
+            this.y + this.height > mo.y &&
+            this.x < mo.x &&
+            this.y < mo.y + mo.height;
+
         /*(this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) &&
             (this.y + this.offsetY + this.height) >= obj.y &&
             (this.y + this.offsetY) <= (obj.y + obj.height) &&
             obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
         */
-        }
+    }
 
-        hit(){
+    hit() {
         this.energy -= 5;
         if (this.energy < 0) {
             this.energy = 0;
-        } else{
+        } else {
             this.lastHit = new Date().getTime();
         }
-        }
+    }
 
-        isHurt(){
-            let timesPassed = new Date().getTime() - this.lastHit;
-            return timesPassed < 100;
+    isHurt() {
+        let timesPassed = new Date().getTime() - this.lastHit;
+        return timesPassed < 100;
 
-        }
+    }
 
-        isDead(){
-            return this.energy == 0;
-        }
+    isDead() {
+        return this.energy == 0;
+    }
 }
