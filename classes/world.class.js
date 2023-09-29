@@ -5,6 +5,9 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+    statusbarHealth = new StatusbarHealth();
+    statusbarCoin = new StatusbarCoin();
+    statusbarBottle = new StatusbarBottle();
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -36,6 +39,13 @@ class World {
         this.addObjectsToMap(this.level.object)
 
         this.ctx.translate(-this.camera_x, 0)
+        //--------Space for fixed objects---------
+        this.addToMap(this.statusbarHealth)
+        this.addToMap(this.statusbarCoin)
+        this.addToMap(this.statusbarBottle)
+        this.ctx.translate(this.camera_x, 0)
+
+        this.ctx.translate(-this.camera_x, 0)
 
 
         let self = this;
@@ -45,7 +55,7 @@ class World {
     }
 
     addObjectsToMap(object) {
-        object.forEach(o => {
+        object.forEach((o) => {
             this.addToMap(o)
         });
     }
@@ -81,10 +91,10 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
                     this.character.hit();
+                    this.statusbarHealth.setPercentage(this.character.energy)
                     console.log('Collision! Pepes energy is', this.character.energy);
                 }
             });
         }, 200);
     }
-
 }

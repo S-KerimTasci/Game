@@ -4,17 +4,6 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
 
-
-    drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken) {
-            ctx.beginPath();
-            ctx.lineWidth = "4";
-            ctx.strokeStyle = "green";
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
-    }
-
     playAnimation(img) {
         let i = this.currentImage % img.length;
         let path = img[i];
@@ -44,7 +33,7 @@ class MovableObject extends DrawableObject {
     }
 
     jump() {
-        this.speedY = 15;
+        this.speedY = 25;
     }
 
     isColliding(mo) {
