@@ -105,8 +105,21 @@ class World {
             }
         });
 
-        this.removeCollidedObjects();
 
+        this.level.object.forEach((obj) => {
+            if (this.character.isColliding(obj)) {
+              console.log('Collision! Pepes hits object');
+              // Überprüfe, um welchen Objekttyp es sich handelt und fülle die entsprechende Statusleiste auf
+              if (obj instanceof Coin) {
+                this.collectCoin();
+              } else if (obj instanceof Salsa) {
+                this.collectSalsa();
+              }
+            }
+          });
+
+          this.removeCollidedObjects();
+  
         /*
         this.level.object.forEach((obj) => {
             if (obj instanceof Coin && this.character.isColliding(obj)) {
@@ -131,6 +144,16 @@ class World {
             return true;
         });
     }
+
+    collectCoin() {
+        this.statusbarCoin.setPercentage(this.statusbarCoin.percentage + 20);
+        console.log('Coin is' + this.statusbarCoin.percentage)
+      }
+      
+      collectSalsa() {
+        this.statusbarBottle.setPercentage(this.statusbarBottle.percentage + 20);
+        console.log('Salsa is' + this.statusbarCoin.percentage)
+      }
 
     checkThrowableObject() {
         if (this.keyboard.ACTION) {
