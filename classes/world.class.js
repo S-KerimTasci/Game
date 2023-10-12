@@ -105,6 +105,9 @@ class World {
             }
         });
 
+        this.removeCollidedObjects();
+
+        /*
         this.level.object.forEach((obj) => {
             if (obj instanceof Coin && this.character.isColliding(obj)) {
                 console.log('Collision! Pepes hits a Coin');
@@ -113,11 +116,25 @@ class World {
                 console.log('Collision! Pepes hits Salsa');
             }
         });
+        */
     }
 
-    checkThrowableObject(){
+    removeCollidedObjects() {
+        this.level.object = this.level.object.filter((obj) => {
+            if (obj instanceof Coin || obj instanceof Salsa) {
+                if (this.character.isColliding(obj)) {
+                    // Kollision mit Coin oder Salsa, nicht hinzufügen
+                    return false;
+                }
+            }
+            // Keine Kollision oder nicht Coin/Salsa, hinzufügen
+            return true;
+        });
+    }
+
+    checkThrowableObject() {
         if (this.keyboard.ACTION) {
-            let bottle = new ThrowableObject (this.character.x +80 , this.character.y + 50)
+            let bottle = new ThrowableObject(this.character.x + 80, this.character.y + 50)
             this.throwableObject.push(bottle)
         }
     }
