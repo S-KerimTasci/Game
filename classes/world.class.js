@@ -106,8 +106,11 @@ class World {
         });
 
         this.level.object.forEach((obj) => {
-            if (this.character.isColliding(obj)) {
-                console.log('Collision! Pepes hits object');
+            if (obj instanceof Coin && this.character.isColliding(obj)) {
+                console.log('Collision! Pepes hits a Coin');
+            }
+            if (obj instanceof Salsa && this.character.isColliding(obj)) {
+                console.log('Collision! Pepes hits Salsa');
             }
         });
     }

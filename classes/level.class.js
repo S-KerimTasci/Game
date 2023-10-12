@@ -11,8 +11,5 @@ class Level {
         this.enemies = enemies;
         this.cloud = cloud;
         this.object = object
-
     }
-
-
 }
