@@ -56,3 +56,14 @@ const level1 = new Level(
     ]
 )
 
+function countSalsaObjects(objects) {
+    let count = 0;
+    for (const obj of objects) {
+        if (obj instanceof Salsa) {
+            count++;
+        }
+    }
+    return count;
+}
+
+const MAX_SALSA_BOTTLES = countSalsaObjects(level1.object);

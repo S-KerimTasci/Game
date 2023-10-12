@@ -152,15 +152,24 @@ class World {
       
       collectSalsa() {
         this.statusbarBottle.setPercentage(this.statusbarBottle.percentage + 20);
+        world.character.collectedSalsaBottles++;
         console.log('Salsa is' + this.statusbarCoin.percentage)
       }
 
     checkThrowableObject() {
         if (this.keyboard.ACTION) {
-            let bottle = new ThrowableObject(this.character.x + 80, this.character.y + 50)
+            let bottle = new ThrowableObject(this.character.x + 80, this.character.y + 50, this)
             this.throwableObject.push(bottle)
         }
     }
+
+    updateBottleStatusbar() {
+        const bottlesRemaining = this.character.collectedSalsaBottles;
+        // Annahme: MAX_SALSA_BOTTLES ist die maximale Anzahl der Salsa-Flaschen, die der Charakter halten kann.
+        const percentage = (bottlesRemaining / MAX_SALSA_BOTTLES ) * 100;
+        this.statusbarBottle.setPercentage(percentage);
+    }
+    
 
 
 }

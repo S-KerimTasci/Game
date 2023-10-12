@@ -44,6 +44,8 @@ class Character extends MovableObject {
     world;
     speed = 5;
     speedY = 0;
+
+    collectedSalsaBottles = 0
     
 
     walking_sound = new Audio('../audio/walking.mp3')
@@ -96,4 +98,10 @@ class Character extends MovableObject {
             }
         }, 50)
     }
+
+    /*
+    collectSalsa() {
+        this.collectedSalsaBottles++;
+    }
+    */
 }

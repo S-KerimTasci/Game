@@ -15,31 +15,34 @@ class ThrowableObject extends MovableObject {
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png',
     ]
 
-    constructor(x,y) {
+    constructor(x, y, world) {
         super().loadIMG('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
         this.x = x;
         this.y = y;
         this.height = 100;
         this.width = 80;
+        this.world = world;
         this.throw(100, 100);
+        
         //this.applyGravity();
     }
 
     throw() {
-        this.speedY = 15;
-        this.applyGravity();
-        setInterval(() => {
-            this.x += 10
-        }, 1000/ 50);
-
+        if (this.world.character.collectedSalsaBottles > 0) {
+            this.world.character.collectedSalsaBottles--;
+            this.speedY = 15;
+            this.applyGravity();
+            setInterval(() => {
+                this.x += 10
+            }, 1000 / 50);
+            this.world.updateBottleStatusbar()
+        }
         /*
         setInterval(() => {
                 this.y -= this.speedY;
                 this.speedY -= this.accelaration;
         }, 1000 / 25)
         */
-
-
 
         /*setInterval(() => {
             if (this.world.keyboard.ACTION) {

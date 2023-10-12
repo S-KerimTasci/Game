@@ -23,7 +23,7 @@ window.addEventListener("keydown", (e) => {
         keyboard.SPACE = true;
     }
 
-    if (e.keyCode == 69) {
+    if (e.keyCode == 69 && world.character.collectedSalsaBottles > 0) {
         keyboard.ACTION = true;
     }
 })
