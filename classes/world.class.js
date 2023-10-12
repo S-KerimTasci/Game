@@ -104,6 +104,12 @@ class World {
                 console.log('Collision! Pepes energy is', this.character.energy);
             }
         });
+
+        this.level.object.forEach((obj) => {
+            if (this.character.isColliding(obj)) {
+                console.log('Collision! Pepes hits object');
+            }
+        });
     }
 
     checkThrowableObject(){
