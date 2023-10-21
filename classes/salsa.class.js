@@ -4,6 +4,13 @@ class Salsa extends MovableObject{
     width = 80;
     y = 330;
 
+    offset ={
+        top:10,
+        bottom:10,
+        left:20,
+        right:30
+    }
+
     imagesWalking = [
         '../img/6_salsa_bottle/1_salsa_bottle_on_ground.png',
         '../img/6_salsa_bottle/2_salsa_bottle_on_ground.png',

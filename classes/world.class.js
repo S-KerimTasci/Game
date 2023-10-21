@@ -99,27 +99,32 @@ class World {
     checkCollision() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                this.character.hit();
-                this.statusbarHealth.setPercentage(this.character.energy)
-                console.log('Collision! Pepes energy is', this.character.energy);
+                if (this.CharacterIsAboveEnemy(this.character, enemy) && this.isCharacterJumping(this.character)) {
+                    console.log('you hit the enemy')
+                } else {
+                    this.character.hit();
+                    this.statusbarHealth.setPercentage(this.character.energy)
+                    console.log('Collision! Pepes energy is', this.character.energy);
+                }
+
             }
         });
 
 
         this.level.object.forEach((obj) => {
             if (this.character.isColliding(obj)) {
-              console.log('Collision! Pepes hits object');
-              // Überprüfe, um welchen Objekttyp es sich handelt und fülle die entsprechende Statusleiste auf
-              if (obj instanceof Coin) {
-                this.collectCoin();
-              } else if (obj instanceof Salsa) {
-                this.collectSalsa();
-              }
+                console.log('Collision! Pepes hits object');
+                // Überprüfe, um welchen Objekttyp es sich handelt und fülle die entsprechende Statusleiste auf
+                if (obj instanceof Coin) {
+                    this.collectCoin();
+                } else if (obj instanceof Salsa) {
+                    this.collectSalsa();
+                }
             }
-          });
+        });
 
-          this.removeCollidedObjects();
-  
+        this.removeCollidedObjects();
+
         /*
         this.level.object.forEach((obj) => {
             if (obj instanceof Coin && this.character.isColliding(obj)) {
@@ -148,13 +153,13 @@ class World {
     collectCoin() {
         this.statusbarCoin.setPercentage(this.statusbarCoin.percentage + 20);
         console.log('Coin is' + this.statusbarCoin.percentage)
-      }
-      
-      collectSalsa() {
+    }
+
+    collectSalsa() {
         this.statusbarBottle.setPercentage(this.statusbarBottle.percentage + 20);
         world.character.collectedSalsaBottles++;
         console.log('Salsa is' + this.statusbarCoin.percentage)
-      }
+    }
 
     checkThrowableObject() {
         if (this.keyboard.ACTION) {
@@ -166,10 +171,21 @@ class World {
     updateBottleStatusbar() {
         const bottlesRemaining = this.character.collectedSalsaBottles;
         // Annahme: MAX_SALSA_BOTTLES ist die maximale Anzahl der Salsa-Flaschen, die der Charakter halten kann.
-        const percentage = (bottlesRemaining / MAX_SALSA_BOTTLES ) * 100;
+        const percentage = (bottlesRemaining / MAX_SALSA_BOTTLES) * 100;
         this.statusbarBottle.setPercentage(percentage);
     }
-    
 
+    CharacterIsAboveEnemy(character, enemy) {
+        return character.y + character.height - character.offset.top > enemy.y
+    }
+
+    /**
+     * checks if charakter is jumping
+     * @param {*} character 
+     * @returns 
+     */
+    isCharacterJumping(character) {
+        return character.speedY < 0;
+    }
 
 }

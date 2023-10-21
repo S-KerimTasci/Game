@@ -2,7 +2,7 @@ class Character extends MovableObject {
 
     height = 280;
     width = 125;
-    y = 150
+    y = 160;
     imagesWalking = [
         '../img/2_character_pepe/2_walk/W-21.png',
         '../img/2_character_pepe/2_walk/W-22.png',
@@ -46,6 +46,13 @@ class Character extends MovableObject {
     speedY = 0;
 
     collectedSalsaBottles = 0
+
+    offset ={
+        top:100,
+        bottom:99,
+        left:20,
+        right:40
+    }
     
 
     walking_sound = new Audio('../audio/walking.mp3')

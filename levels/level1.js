@@ -40,18 +40,18 @@ const level1 = new Level(
     new Cloud(),
 
     [
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Salsa(),
-        new Salsa(),
-        new Salsa(),
-        new Salsa(),
-        new Salsa(),
-        new Salsa(),
+        // new Coin(),
+        // new Coin(),
+        // new Coin(),
+        // new Coin(),
+        // new Coin(),
+        // new Coin(),
+        // new Salsa(),
+        // new Salsa(),
+        // new Salsa(),
+        // new Salsa(),
+        // new Salsa(),
+        // new Salsa(),
         
     ]
 )

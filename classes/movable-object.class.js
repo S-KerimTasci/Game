@@ -5,6 +5,16 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     accelaration = 1.5;
 
+    /**
+     * Numarical offsets used for collison check
+     */
+    offset ={
+        top:0,
+        bottom:0,
+        left:0,
+        right:0
+    }
+
     playAnimation(img) {
         let i = this.currentImage % img.length;
         let path = img[i];
@@ -14,10 +24,19 @@ class MovableObject extends DrawableObject {
 
     moveRight() {
         this.x += this.speed;
+        if (this.y > 160) {
+            this.speedY = 0;
+            this.y = 160;
+        }
     }
 
     moveLeft() {
         this.x -= this.speed;
+        if (this instanceof Character && this.y > 160) {
+            this.speedY = 0;
+            this.y = 160;
+        }
+        
     }
 
     applyGravity() {
@@ -33,7 +52,7 @@ class MovableObject extends DrawableObject {
         if (this instanceof ThrowableObject) {
             return true
         } else {
-            return this.y < 150;
+            return this.y < 160;
         }
     }
 
@@ -42,16 +61,22 @@ class MovableObject extends DrawableObject {
     }
 
     isColliding(mo) {
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x &&
-            this.y < mo.y + mo.height;
+        return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
 
         /*(this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) &&
             (this.y + this.offsetY + this.height) >= obj.y &&
             (this.y + this.offsetY) <= (obj.y + obj.height) &&
             obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
-        */
+        
+        return this.x + this.width > mo.x &&
+            this.y + this.height > mo.y &&
+            this.x < mo.x &&
+            this.y < mo.y + mo.height;
+
+            */
     }
 
     hit() {
