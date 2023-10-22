@@ -101,6 +101,7 @@ class World {
             if (this.character.isColliding(enemy)) {
                 if (this.CharacterIsAboveEnemy(this.character, enemy) && this.isCharacterJumping(this.character)) {
                     console.log('you hit the enemy')
+                    this.killEnemy(enemy);
                 } else {
                     this.character.hit();
                     this.statusbarHealth.setPercentage(this.character.energy)
@@ -187,5 +188,35 @@ class World {
     isCharacterJumping(character) {
         return character.speedY < 0;
     }
+
+    killEnemy(enemy) {
+        // Stoppen Sie die laufende Animation des Gegners
+        enemy.deadEnemy = true;
+        clearInterval(enemy.id1);
+        clearInterval(enemy.id2);
+        enemy.animateDeath();
+        
+        
+    
+        // // Überprüfen Sie, ob das Bild des Gegners gültig ist, bevor Sie es anzeigen
+        // if (enemy.imagesDead.length > 0) {
+        //     // Zeigen Sie das Bild des toten Gegners an
+        //     enemy.playAnimation(enemy.imagesDead);
+        // }
+    
+        // Verwenden Sie setTimeout, um den getroffenen Gegner aus dem Array zu entfernen
+        setTimeout(() => {
+            // Überprüfen Sie erneut, ob das Bild des Gegners gültig ist
+            if (enemy.imagesDead.length > 0) {
+                // Entfernen Sie den getroffenen Gegner aus dem enemies-Array in level1.js
+                const index = this.level.enemies.indexOf(enemy);
+                if (index > -1) {
+                    this.level.enemies.splice(index, 1);
+                }
+            }
+        }, 1000);
+    }
+    
+    
 
 }

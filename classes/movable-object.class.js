@@ -15,6 +15,8 @@ class MovableObject extends DrawableObject {
         right:0
     }
 
+    deadEnemy = false;
+
     playAnimation(img) {
         let i = this.currentImage % img.length;
         let path = img[i];
@@ -86,6 +88,10 @@ class MovableObject extends DrawableObject {
         } else {
             this.lastHit = new Date().getTime();
         }
+    }
+
+    hitEnemy(){
+        this.energy = 0
     }
     
     isHurt() {
