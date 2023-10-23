@@ -5,6 +5,9 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     accelaration = 1.5;
 
+    id1;
+    id2;
+
     /**
      * Numarical offsets used for collison check
      */
@@ -103,4 +106,22 @@ class MovableObject extends DrawableObject {
     isDead() {
         return this.energy == 0;
     }
+
+    animateWalk() {
+        if (!this.deadEnemy) {
+           this.id1 = setInterval(() => {
+               this.moveLeft();
+           }, 1000 / 60)
+           this.id2 = setInterval(() => {
+               this.playAnimation(this.imagesWalking);
+           }, 100) 
+        } else {
+           this.playAnimation(this.imagesDead);
+        }
+
+   }
+
+   animateDeath(){
+       this.playAnimation(this.imagesDead);
+   }
 }

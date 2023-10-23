@@ -106,9 +106,4 @@ class Character extends MovableObject {
         }, 50)
     }
 
-    /*
-    collectSalsa() {
-        this.collectedSalsaBottles++;
-    }
-    */
 }
