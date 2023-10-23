@@ -93,7 +93,22 @@ class World {
         setInterval(() => {
             this.checkCollision();
             this.checkThrowableObject();
+            this.checkCollisionOfBottle();
         }, 200);
+    }
+
+    checkCollisionOfBottle() {
+        this.level.enemies.forEach((enemy) => {
+            if (!(enemy instanceof Endboss)) {
+            this.throwableObject.forEach((bottle) => {
+                if (bottle.isColliding(enemy)) {
+                    console.log('Bottle hit an enemy');
+                    this.killEnemy(enemy);
+                    bottle.animateBottleSplash()
+                }
+            });
+        }
+        });
     }
 
     checkCollision() {
@@ -125,17 +140,6 @@ class World {
         });
 
         this.removeCollidedObjects();
-
-        /*
-        this.level.object.forEach((obj) => {
-            if (obj instanceof Coin && this.character.isColliding(obj)) {
-                console.log('Collision! Pepes hits a Coin');
-            }
-            if (obj instanceof Salsa && this.character.isColliding(obj)) {
-                console.log('Collision! Pepes hits Salsa');
-            }
-        });
-        */
     }
 
     removeCollidedObjects() {
@@ -196,14 +200,6 @@ class World {
         clearInterval(enemy.id2);
         enemy.animateDeath();
         
-        
-    
-        // // Überprüfen Sie, ob das Bild des Gegners gültig ist, bevor Sie es anzeigen
-        // if (enemy.imagesDead.length > 0) {
-        //     // Zeigen Sie das Bild des toten Gegners an
-        //     enemy.playAnimation(enemy.imagesDead);
-        // }
-    
         // Verwenden Sie setTimeout, um den getroffenen Gegner aus dem Array zu entfernen
         setTimeout(() => {
             // Überprüfen Sie erneut, ob das Bild des Gegners gültig ist
@@ -215,8 +211,6 @@ class World {
                 }
             }
         }, 1000);
-    }
+    } 
     
-    
-
 }

@@ -7,6 +7,8 @@ class MovableObject extends DrawableObject {
 
     id1;
     id2;
+    id3;
+    id4;
 
     /**
      * Numarical offsets used for collison check
@@ -55,7 +57,7 @@ class MovableObject extends DrawableObject {
 
     isAboveGround() {
         if (this instanceof ThrowableObject) {
-            return true
+            return this.y < 360;
         } else {
             return this.y < 160;
         }

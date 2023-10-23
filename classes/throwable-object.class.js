@@ -23,34 +23,47 @@ class ThrowableObject extends MovableObject {
         this.width = 80;
         this.world = world;
         this.throw(100, 100);
-        
-        //this.applyGravity();
+
+        this.loadImages(this.imagesFlying)
+        this.loadImages(this.imagesSplash)
     }
 
+    
     throw() {
         if (this.world.character.collectedSalsaBottles > 0) {
             this.world.character.collectedSalsaBottles--;
             this.speedY = 15;
             this.applyGravity();
-            setInterval(() => {
-                this.x += 10
-            }, 1000 / 50);
+
+            this.animateBottleThrow();
+            
+
+            
             this.world.updateBottleStatusbar()
         }
-        /*
-        setInterval(() => {
-                this.y -= this.speedY;
-                this.speedY -= this.accelaration;
-        }, 1000 / 25)
-        */
+    }
 
-        /*setInterval(() => {
-            if (this.world.keyboard.ACTION) {
-                this.speedY = 25;
-                console.log('ACTION!')
+    animateBottleThrow(){
+        this.id3 = setInterval(() => {
+            this.playAnimation(this.imagesFlying)
+        }, 60);
+        this.id4 = setInterval(() => {
+            this.x += 10;
+        }, 1000 / 50);
+    }
+
+    animateBottleSplash(){
+        clearInterval(this.id3)
+        clearInterval(this.id4)
+        this.playAnimation(this.imagesSplash)
+
+        setTimeout(() => {
+            // Überprüfen Sie erneut, ob sich die Flasche noch im throwableObject-Array befindet
+            const index = this.world.throwableObject.indexOf(this);
+            if (index > -1) {
+                // Wenn die Flasche noch im Array ist, entfernen Sie sie
+                this.world.throwableObject.splice(index, 1);
             }
-        }, 1000/60);
-        */
-
+        }, 1000);
     }
 }
