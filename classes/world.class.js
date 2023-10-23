@@ -106,6 +106,11 @@ class World {
                     this.killEnemy(enemy);
                     bottle.animateBottleSplash()
                 }
+
+                if (bottle.y > 360) {
+                    console.log('Bottle hit the ground');
+                    bottle.animateBottleSplash();
+                }
             });
         }
         });
