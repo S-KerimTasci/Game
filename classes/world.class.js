@@ -99,24 +99,22 @@ class World {
 
     checkCollisionOfBottle() {
         this.level.enemies.forEach((enemy) => {
-            
-                this.throwableObject.forEach((bottle) => {
-                    if (bottle.isColliding(enemy) && !(enemy instanceof Endboss)) {
-                        console.log('Bottle hit an enemy');
-                        this.killEnemy(enemy);
-                        bottle.animateBottleSplash()
-                    }
-                    else if (bottle.y > 360) {
-                        console.log('Bottle hit the ground');
-                        bottle.animateBottleSplash();
-                    }else if (bottle.isColliding(enemy) && enemy instanceof Endboss) {
-                        console.log('Bottle hit an Endboss');
-                        bottle.animateBottleSplash()
-                    }
-                });
-             
 
-
+            this.throwableObject.forEach((bottle) => {
+                if (bottle.isColliding(enemy) && !(enemy instanceof Endboss)) {
+                    console.log('Bottle hit an enemy');
+                    this.killEnemy(enemy);
+                    bottle.animateBottleSplash()
+                }
+                else if (bottle.y > 360) {
+                    console.log('Bottle hit the ground');
+                    bottle.animateBottleSplash();
+                } else if (bottle.isColliding(enemy) && enemy instanceof Endboss) {
+                    bottle.animateBottleSplash()
+                    enemy.hit();
+                    console.log('Bottle hit an Endboss Energy is' + enemy.energy);
+                }
+            });
         });
     }
 
@@ -203,11 +201,17 @@ class World {
     }
 
     killEnemy(enemy) {
-        // Stoppen Sie die laufende Animation des Gegners
-        enemy.deadEnemy = true;
-        clearInterval(enemy.id1);
-        clearInterval(enemy.id2);
-        enemy.animateDeath();
+        if (!enemy instanceof Endboss) {
+            // Stoppen Sie die laufende Animation des Gegners
+            enemy.deadEnemy = true;
+            clearInterval(enemy.id1);
+            clearInterval(enemy.id2);
+            enemy.animateDeath();
+        } else {
+            clearInterval(enemy.id5);
+            enemy.playAnimation(enemy.imagesDead);
+        }
+
 
         // Verwenden Sie setTimeout, um den getroffenen Gegner aus dem Array zu entfernen
         setTimeout(() => {

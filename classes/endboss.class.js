@@ -1,9 +1,13 @@
-class Endboss extends MovableObject{
+class Endboss extends MovableObject {
     x = 2800;
     y = 50;
     height = 400;
     width = 220;
     speed = 2
+
+    energy = 100
+
+    hits = 0;
 
     hadFirstContact = false
 
@@ -48,40 +52,48 @@ class Endboss extends MovableObject{
         '../img/4_enemie_boss_chicken/5_dead/G26.png',
     ]
 
-    constructor(){
+    constructor() {
         super().loadIMG(this.imagesAlert[0]);
         this.loadImages(this.imagesAlert);
         this.loadImages(this.imagesWalking);
         this.loadImages(this.imagesAttack);
+        this.loadImages(this.imagesHurt);
         this.loadImages(this.imagesDead);
         this.animate();
     }
 
     animate() {
-        let i = 0
-        setInterval(() => {
+        let i = 0;
+        this.id5 = setInterval(() => {
             if (i < 15) {
                 this.playAnimation(this.imagesAlert);
-            } else if( this.x - world.character.x < 80 ) {
+            } else if (this.x - world.character.x < 80) {
                 this.playAnimation(this.imagesAttack);
-                this.moveLeft(); 
-            } else  {
+                this.moveLeft();
+            } else if (this.isHurt()) {
+                this.playAnimation(this.imagesHurt);
+            } else if (this.isDead()) {
+                //this.playAnimation(this.imagesDead);
+                //clearInterval(this.id5); 
+                world.killEnemy(this)
+                
+                
+                
+            } else {
                 this.playAnimation(this.imagesWalking);
-                this.moveLeft(); 
-            } 
-            
-            i++
+                this.moveLeft();
+                
+            }
 
-            if (world.character.x > 1600 && !this.hadFirstContact)  {
+            i++;
+
+            if (world.character.x > 1600 && !this.hadFirstContact) {
                 i = 0;
                 this.x = 2250;
                 this.hadFirstContact = true;
             }
-
-            // if (world.character.x > 1600 && !this.playAnimation(this.imagesAlert)) {
-            //     this.moveLeft();
-            // }
-        }, 100)
+        }, 100);
     }
+
 }
 

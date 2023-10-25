@@ -5,10 +5,14 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     accelaration = 1.5;
 
+    // ID to stop the animate enemy intervall
     id1;
     id2;
+    // ID to stop the anmate thorw bottle and splash bottle intervalls
     id3;
     id4;
+    // ID to stop the animate endboss intervall
+    id5;
 
     /**
      * Numarical offsets used for collison check
@@ -87,7 +91,11 @@ class MovableObject extends DrawableObject {
     }
 
     hit() {
+        if (this instanceof Endboss) {
+            this.energy -= 10;
+        }else{
         this.energy -= 5;
+        }
         if (this.energy < 0) {
             this.energy = 0;
         } else {
