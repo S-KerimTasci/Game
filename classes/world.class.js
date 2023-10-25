@@ -99,20 +99,24 @@ class World {
 
     checkCollisionOfBottle() {
         this.level.enemies.forEach((enemy) => {
-            if (!(enemy instanceof Endboss)) {
-            this.throwableObject.forEach((bottle) => {
-                if (bottle.isColliding(enemy)) {
-                    console.log('Bottle hit an enemy');
-                    this.killEnemy(enemy);
-                    bottle.animateBottleSplash()
-                }
+            
+                this.throwableObject.forEach((bottle) => {
+                    if (bottle.isColliding(enemy) && !(enemy instanceof Endboss)) {
+                        console.log('Bottle hit an enemy');
+                        this.killEnemy(enemy);
+                        bottle.animateBottleSplash()
+                    }
+                    else if (bottle.y > 360) {
+                        console.log('Bottle hit the ground');
+                        bottle.animateBottleSplash();
+                    }else if (bottle.isColliding(enemy) && enemy instanceof Endboss) {
+                        console.log('Bottle hit an Endboss');
+                        bottle.animateBottleSplash()
+                    }
+                });
+             
 
-                if (bottle.y > 360) {
-                    console.log('Bottle hit the ground');
-                    bottle.animateBottleSplash();
-                }
-            });
-        }
+
         });
     }
 
@@ -204,7 +208,7 @@ class World {
         clearInterval(enemy.id1);
         clearInterval(enemy.id2);
         enemy.animateDeath();
-        
+
         // Verwenden Sie setTimeout, um den getroffenen Gegner aus dem Array zu entfernen
         setTimeout(() => {
             // Überprüfen Sie erneut, ob das Bild des Gegners gültig ist
@@ -216,6 +220,6 @@ class World {
                 }
             }
         }, 1000);
-    } 
-    
+    }
+
 }
