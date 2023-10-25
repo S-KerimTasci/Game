@@ -1,8 +1,9 @@
 class Endboss extends MovableObject{
-    x = 2200;
+    x = 2800;
     y = 50;
     height = 400;
     width = 220;
+    speed = 2
 
     hadFirstContact = false
 
@@ -62,12 +63,15 @@ class Endboss extends MovableObject{
                 this.playAnimation(this.imagesAlert);
             } else {
                 this.playAnimation(this.imagesWalking);
+                this.moveLeft();
+                
             }
             
             i++
 
             if (world.character.x > 1600 && !this.hadFirstContact)  {
                 i = 0;
+                this.x = 2250;
                 this.hadFirstContact = true;
             }
 
