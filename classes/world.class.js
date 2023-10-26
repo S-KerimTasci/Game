@@ -111,7 +111,7 @@ class World {
                     bottle.animateBottleSplash();
                 } else if (bottle.isColliding(enemy) && enemy instanceof Endboss) {
                     bottle.animateBottleSplash()
-                    enemy.hit();
+                    enemy.hit(enemy);
                     console.log('Bottle hit an Endboss Energy is' + enemy.energy);
                 }
             });
