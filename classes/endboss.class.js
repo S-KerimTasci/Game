@@ -74,26 +74,24 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.imagesHurt);
             } else if (this.isDead()) {
                 this.playAnimation(this.imagesDead);
-                //clearInterval(this.id5); 
                 world.killEnemy(this)
-                
-                
-                
             } else {
                 this.playAnimation(this.imagesWalking);
                 this.moveLeft();
-                
             }
 
             i++;
 
             if (world.character.x > 1600 && !this.hadFirstContact) {
                 i = 0;
-                this.x = 2250;
-                this.hadFirstContact = true;
+                this.placeEndbossforFirstContact()
             }
         }, 100);
     }
 
+    placeEndbossforFirstContact(){
+        this.x = 2250;
+        this.hadFirstContact = true;
+    }
 }
 
