@@ -45,3 +45,6 @@ function init(){
     console.log('My character is', world.character )  
 }
 
+function endgame(){
+    console.log('Game Over')
+}

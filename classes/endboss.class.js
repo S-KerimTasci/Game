@@ -73,7 +73,7 @@ class Endboss extends MovableObject {
             } else if (this.isHurt()) {
                 this.playAnimation(this.imagesHurt);
             } else if (this.isDead()) {
-                //this.playAnimation(this.imagesDead);
+                this.playAnimation(this.imagesDead);
                 //clearInterval(this.id5); 
                 world.killEnemy(this)
                 

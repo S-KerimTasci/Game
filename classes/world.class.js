@@ -208,8 +208,11 @@ class World {
             clearInterval(enemy.id2);
             enemy.animateDeath();
         } else {
-            clearInterval(enemy.id5);
-            enemy.playAnimation(enemy.imagesDead);
+            //setTimeout(() => {
+                clearInterval(enemy.id5);
+            //}, 200);
+            
+            
         }
 
 
