@@ -125,7 +125,7 @@ class World {
                     console.log('you hit the enemy')
                     this.killEnemy(enemy);
                 } else {
-                    this.character.hit();
+                    this.character.hit(enemy);
                     this.statusbarHealth.setPercentage(this.character.energy)
                     console.log('Collision! Pepes energy is', this.character.energy);
                 }
@@ -201,7 +201,7 @@ class World {
     }
 
     killEnemy(enemy) {
-        if (!enemy instanceof Endboss) {
+        if (!(enemy instanceof Endboss)) {
             // Stoppen Sie die laufende Animation des Gegners
             enemy.deadEnemy = true;
             clearInterval(enemy.id1);

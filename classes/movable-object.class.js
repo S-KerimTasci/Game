@@ -90,15 +90,15 @@ class MovableObject extends DrawableObject {
             */
     }
 
-    hit() {
+    hit(enemy) {
         if (this instanceof Endboss) {
             this.energy -= 10;
-        }else{
+        }else if (!enemy.deadEnemy) {
         this.energy -= 5;
         }
         if (this.energy < 0) {
             this.energy = 0;
-        } else {
+        } else if(!enemy.deadEnemy) {
             this.lastHit = new Date().getTime();
         }
     }
