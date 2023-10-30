@@ -13,6 +13,9 @@ class MovableObject extends DrawableObject {
     id4;
     // ID to stop the animate endboss intervall
     id5;
+    // ID to stop the animate character intervall
+    id6;
+
 
     /**
      * Numarical offsets used for collison check

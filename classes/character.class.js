@@ -88,9 +88,14 @@ class Character extends MovableObject {
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60)
 
-        setInterval(() => {
+        this.id6 = setInterval(() => {
             if (this.isDead()) {
-                this.playAnimation(this.imagesDead)
+                if(this.currentImage > this.imagesDead.length) {
+                    this.currentImage == 0;
+                    this.playAnimation(this.imagesDead)
+                    clearInterval(this.id6);
+                }
+                //this.playAnimation(this.imagesDead)
             } else if (this.isHurt()) {
                this.playAnimation(this.imagesHurt)
             }
