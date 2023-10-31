@@ -44,6 +44,7 @@ class Character extends MovableObject {
     world;
     speed = 5;
     speedY = 0;
+    characterDead = false;
 
     collectedSalsaBottles = 0
 
@@ -90,12 +91,22 @@ class Character extends MovableObject {
 
         this.id6 = setInterval(() => {
             if (this.isDead()) {
-                if(this.currentImage > this.imagesDead.length) {
-                    this.currentImage == 0;
-                    this.playAnimation(this.imagesDead)
+                this.setFirstDead(this.characterDead)
+                this.characterDead = true;
+                clearInterval(this.id1);
+                clearInterval(this.id2);
+                clearInterval(this.id3);
+                clearInterval(this.id4);
+                clearInterval(this.id5);
+                this.playAnimation(this.imagesDead);
+                if (this.currentImage == this.imagesDead.length) {
                     clearInterval(this.id6);
                 }
-                //this.playAnimation(this.imagesDead)
+                // if(this.currentImage > this.imagesDead.length) {
+                //     this.currentImage == 0;
+                //     this.playAnimation(this.imagesDead)
+                //     clearInterval(this.id6);
+                // }
             } else if (this.isHurt()) {
                this.playAnimation(this.imagesHurt)
             }

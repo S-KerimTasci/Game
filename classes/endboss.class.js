@@ -146,13 +146,7 @@ class Endboss extends MovableObject {
         this.hadFirstContact = true;
     }
 
-    setFirstDead(firstDead) {
-        if (!firstDead) {
-            return this.currentImage = 0;
-        } else {
-            return true
-        }
-    }
+    
 }
 
 

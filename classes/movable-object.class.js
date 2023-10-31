@@ -138,4 +138,12 @@ class MovableObject extends DrawableObject {
    animateDeath(){
        this.playAnimation(this.imagesDead);
    }
+
+   setFirstDead(firstDead) {
+    if (!firstDead) {
+        return this.currentImage = 0;
+    } else {
+        return true
+    }
+}
 }
