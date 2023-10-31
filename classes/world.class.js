@@ -5,10 +5,12 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
-    statusbarHealth = new StatusbarHealth();
+    statusbarHealth = new StatusbarHealth(30);
+    statusbarHealthEndboss = new StatusbarHealth(500, true);
     statusbarCoin = new StatusbarCoin();
     statusbarBottle = new StatusbarBottle();
-    throwableObject = []
+    throwableObject = [];
+    firstContact = false;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -44,6 +46,10 @@ class World {
         this.ctx.translate(-this.camera_x, 0)
         //--------Space for fixed objects---------
         this.addToMap(this.statusbarHealth)
+        if (this.endbossOnScreen(this.firstContact)) {
+            this.addToMap(this.statusbarHealthEndboss)
+            this.firstContact = true; 
+        }
         this.addToMap(this.statusbarCoin)
         this.addToMap(this.statusbarBottle)
         this.ctx.translate(this.camera_x, 0)
@@ -112,6 +118,7 @@ class World {
                 } else if (bottle.isColliding(enemy) && enemy instanceof Endboss) {
                     bottle.animateBottleSplash()
                     enemy.hit(enemy);
+                    this.statusbarHealthEndboss.setPercentage(enemy.energy)
                     console.log('Bottle hit an Endboss Energy is' + enemy.energy);
                 }
             });
@@ -227,6 +234,14 @@ class World {
                 }
             }
         }, 1000);
+    }
+
+    endbossOnScreen(firstContact){
+        if (!firstContact) {
+            return this.level.enemies[this.level.enemies.length-1].x < 2260
+        } else {
+            return true
+        }        
     }
 
 }

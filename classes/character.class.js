@@ -4,12 +4,12 @@ class Character extends MovableObject {
     width = 125;
     y = 160;
     imagesWalking = [
-        '../img/2_character_pepe/2_walk/W-21.png',
-        '../img/2_character_pepe/2_walk/W-22.png',
-        '../img/2_character_pepe/2_walk/W-23.png',
-        '../img/2_character_pepe/2_walk/W-24.png',
-        '../img/2_character_pepe/2_walk/W-25.png',
-        '../img/2_character_pepe/2_walk/W-26.png'
+        'img/2_character_pepe/2_walk/W-21.png',
+        'img/2_character_pepe/2_walk/W-22.png',
+        'img/2_character_pepe/2_walk/W-23.png',
+        'img/2_character_pepe/2_walk/W-24.png',
+        'img/2_character_pepe/2_walk/W-25.png',
+        'img/2_character_pepe/2_walk/W-26.png'
     ]
 
     imagesJumping = [
@@ -55,11 +55,11 @@ class Character extends MovableObject {
     }
     
 
-    walking_sound = new Audio('../audio/walking.mp3')
+    walking_sound = new Audio('audio/walking.mp3')
 
 
     constructor() {
-        super().loadIMG('../img/2_character_pepe/2_walk/W-21.png')
+        super().loadIMG('img/2_character_pepe/2_walk/W-21.png')
         this.loadImages(this.imagesWalking)
         this.loadImages(this.imagesJumping)
         this.loadImages(this.imagesDead)

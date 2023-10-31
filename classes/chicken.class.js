@@ -4,13 +4,13 @@ class Chicken extends MovableObject {
     width = 60;
     energy = 1;
     imagesWalking = [
-        '../img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
-        '../img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
-        '../img/3_enemies_chicken/chicken_normal/1_walk/3_w.png',
+        'img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
+        'img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
+        'img/3_enemies_chicken/chicken_normal/1_walk/3_w.png',
     ]
 
     imagesDead = [
-        '../img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
+        'img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
     ]
 
     offset ={
@@ -21,7 +21,7 @@ class Chicken extends MovableObject {
     }
     
     constructor() {
-        super().loadIMG('../img/3_enemies_chicken/chicken_normal/1_walk/1_w.png')
+        super().loadIMG('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png')
         this.loadImages(this.imagesWalking)
         this.loadImages(this.imagesDead)
 
