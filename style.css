@@ -1,13 +1,18 @@
+@font-face {
+    font-family: 'Rye';
+    src: url('fonts/rye_regular.ttf') format('truetype');
+} 
+
 body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-image: url('img/desert.png');
+    background-position: center;
+    font-family: 'Rye', Arial, Helvetica, sans-serif;
+
 }
 
 canvas{
     background-color: black;
-}
-
-.d-none{
-    display: none;
 }
