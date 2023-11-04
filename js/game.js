@@ -4,7 +4,13 @@ let keyboard = new Keyboard();
 
 function startGame(){
     document.getElementById('startscreen').classList.add('d-none');
+    document.getElementById('endscreen').classList.add('d-none'); 
     init();
+}
+
+function endGame(){
+    clearAllIntervals()
+    document.getElementById('endscreen').classList.remove('d-none');   
 }
 
 window.addEventListener("keydown", (e) => {
@@ -50,6 +56,10 @@ function init(){
     console.log('My character is', world.character )  
 }
 
-function endgame(){
-    console.log('Game Over')
-}
+// function endgame(){
+//     console.log('Game Over')
+// }
+
+function clearAllIntervals() {
+    for (let i = 1; i < 9999; i++) window.clearInterval(i);
+  }

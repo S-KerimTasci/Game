@@ -122,11 +122,9 @@ class Endboss extends MovableObject {
                 clearInterval(this.id6);
                 this.playAnimation(this.imagesDead);
                 if (this.currentImage == this.imagesDead.length) {
-
-                    world.killEnemy(this)
+                    world.killEnemy(this);
+                    endGame();
                 }
-                // this.playAnimation(this.imagesDead);
-                // world.killEnemy(this)
             } else {
                 this.playAnimation(this.imagesWalking);
                 this.moveLeft();

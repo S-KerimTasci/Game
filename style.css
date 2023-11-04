@@ -23,11 +23,20 @@ canvas{
     display: none !important;
 }
 
+.fullscreen{
+    position: relative;
+}
+
 .startscreen{
     display: block;
     width: 720px;
     height: 480px;
     position: absolute;
+}
+
+.endscreen{
+    position: absolute;
+    top:0;
 }
 
 .startBTN{

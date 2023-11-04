@@ -101,6 +101,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.imagesDead);
                 if (this.currentImage == this.imagesDead.length) {
                     clearInterval(this.id6);
+                    endGame();
                 }
                 // if(this.currentImage > this.imagesDead.length) {
                 //     this.currentImage == 0;
