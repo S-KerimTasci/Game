@@ -9,6 +9,7 @@ body{
     align-items: center;
     background-image: url('img/desert.png');
     background-position: center;
+    background-repeat: no-repeat;
     font-family: 'Rye', Arial, Helvetica, sans-serif;
 
 }
@@ -18,16 +19,61 @@ canvas{
     display: block;
 }
 
+.d-none{
+    display: none;
+}
+
+.startscreen{
+    display: block;
+    width: 720px;
+    height: 480px;
+    position: absolute;
+}
+
+.startBTN{
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 3%;
+    
+}
+
+.intro_outro_img{
+    width: 720px;
+    height: 480px;
+    
+}
+
 @media only screen and (max-width: 720px){
+    .startscreen{
+        width: 100%;
+    }
+
+    .intro_outro_img{
+        width: 100%;
+    }
+
     canvas{
         width: 100%;
     }
+    
 }
 
 @media only screen and (max-height: 480px){
-    canvas{
-        width: 100vh;
+    .startscreen{
+        height: 100%;
     }
+
+    .intro_outro_img{
+        height: 100vh;
+    }
+
+    canvas{
+        height: 100vh;
+    }
+
     h1 {
         display: none;
     }
