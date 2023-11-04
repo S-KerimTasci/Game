@@ -29,14 +29,14 @@
     <script src="js/game.js"></script>
 </head>
 
-<body onload="init()">
+<body>
 
     <h1>EL POLLO LOCO</h1>
 
     <div id="fullscreen" class="fullscreen">
-        <div class="startscreen">
+        <div class="startscreen" id="startscreen">
             <div class="startBTN">
-                <button>Start Game</button>
+                <button onclick="startGame()">Start Game</button>
                 <button> Controls</button>
             </div>
             <img src="img/9_intro_outro_screens/start/startscreen_1.png" class="intro_outro_img">

@@ -107,7 +107,7 @@ class Endboss extends MovableObject {
         this.id5 = setInterval(() => {
             if (i < 15) {
                 this.playAnimation(this.imagesAlert);
-            } else if (this.x - world.character.x < 80) {
+            } else if (world && this.x - world.character.x < 80) {
                 this.playAnimation(this.imagesAttack);
                 this.moveLeft();
             } else if (this.isHurt()) {
