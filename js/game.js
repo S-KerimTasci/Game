@@ -74,22 +74,31 @@ function clearAllIntervals() {
 function toggleFullscreen() {
     if (!fullscreenOpend) {
         enterFullscreen(fullscreen);
-        startscreen.classList.add('enterFullscreen')
-        endscreen.classList.add('enterFullscreen')
-        canvas.classList.add('enterFullscreen')
-        startIMG.classList.add('enterFullscreen');
-        endIMG.classList.add('enterFullscreen')
+        setFullscreenCSS();
         fullscreenOpend = true;
     } else {
         exitFullscreen()
-        startscreen.classList.remove('enterFullscreen')
-        endscreen.classList.remove('enterFullscreen')
-        canvas.classList.remove('enterFullscreen')
-        startIMG.classList.remove('enterFullscreen');
-        endIMG.classList.remove('enterFullscreen')
+        setExitFullscreenCSS()
         fullscreenOpend = false;
     }
 }
+
+function setFullscreenCSS(){
+    startscreen.classList.add('enterFullscreen');
+    endscreen.classList.add('enterFullscreen');
+    canvas.classList.add('enterFullscreen');
+    startIMG.classList.add('enterFullscreen');
+    endIMG.classList.add('enterFullscreen');
+}
+
+function setExitFullscreenCSS(){
+    startscreen.classList.remove('enterFullscreen');
+        endscreen.classList.remove('enterFullscreen');
+        canvas.classList.remove('enterFullscreen');
+        startIMG.classList.remove('enterFullscreen');
+        endIMG.classList.remove('enterFullscreen');
+}
+
 
 
 function enterFullscreen(element) {
