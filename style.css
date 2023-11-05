@@ -19,6 +19,16 @@ canvas{
     display: block;
 }
 
+button{
+    background-color:#FBA83C;
+    font-family: 'Rye', Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 .d-none{
     display: none !important;
 }

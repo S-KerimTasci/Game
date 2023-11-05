@@ -83,7 +83,7 @@ function toggleFullscreen() {
     }
 }
 
-function setFullscreenCSS(){
+function setFullscreenCSS() {
     startscreen.classList.add('enterFullscreen');
     endscreen.classList.add('enterFullscreen');
     canvas.classList.add('enterFullscreen');
@@ -91,12 +91,12 @@ function setFullscreenCSS(){
     endIMG.classList.add('enterFullscreen');
 }
 
-function setExitFullscreenCSS(){
+function setExitFullscreenCSS() {
     startscreen.classList.remove('enterFullscreen');
-        endscreen.classList.remove('enterFullscreen');
-        canvas.classList.remove('enterFullscreen');
-        startIMG.classList.remove('enterFullscreen');
-        endIMG.classList.remove('enterFullscreen');
+    endscreen.classList.remove('enterFullscreen');
+    canvas.classList.remove('enterFullscreen');
+    startIMG.classList.remove('enterFullscreen');
+    endIMG.classList.remove('enterFullscreen');
 }
 
 
