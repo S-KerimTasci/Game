@@ -75,33 +75,27 @@ function clearAllIntervals() {
 function toggleFullscreen() {
     if (!fullscreenOpend) {
         enterFullscreen(fullscreen);
-        setFullscreenCSS();
+        setFullscreenCSS('add');
         fullscreenOpend = true;
     } else {
         exitFullscreen()
-        setExitFullscreenCSS()
+        setFullscreenCSS('remove');
         fullscreenOpend = false;
     }
 }
 
-function setFullscreenCSS() {
-    startscreen.classList.add('enterFullscreen');
-    endscreen.classList.add('enterFullscreen');
-    canvas.classList.add('enterFullscreen');
-    startIMG.classList.add('enterFullscreen');
-    endIMG.classList.add('enterFullscreen');
-    fullscreenIMG.src = "img/exit_fullscreen.png"
+function setFullscreenCSS(x) {
+    startscreen.classList[x]('enterFullscreen');
+    endscreen.classList[x]('enterFullscreen');
+    canvas.classList[x]('enterFullscreen');
+    startIMG.classList[x]('enterFullscreen');
+    endIMG.classList[x]('enterFullscreen');
+    if (x == 'add') {
+        fullscreenIMG.src = "img/exit_fullscreen.png"
+    } else {
+        fullscreenIMG.src = "img/fullscreen.png" 
+    }
 }
-
-function setExitFullscreenCSS() {
-    startscreen.classList.remove('enterFullscreen');
-    endscreen.classList.remove('enterFullscreen');
-    canvas.classList.remove('enterFullscreen');
-    startIMG.classList.remove('enterFullscreen');
-    endIMG.classList.remove('enterFullscreen');
-    fullscreenIMG.src = "img/fullscreen.png"
-}
-
 
 
 function enterFullscreen(element) {
