@@ -5,6 +5,8 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     accelaration = 1.5;
 
+    chicken_sound = new Audio('audio/chicken.mp3')
+
     // ID to stop the animate enemy intervall
     id1;
     id2;
@@ -20,11 +22,11 @@ class MovableObject extends DrawableObject {
     /**
      * Numarical offsets used for collison check
      */
-    offset ={
-        top:0,
-        bottom:0,
-        left:0,
-        right:0
+    offset = {
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0
     }
 
     deadEnemy = false;
@@ -50,7 +52,7 @@ class MovableObject extends DrawableObject {
             this.speedY = 0;
             this.y = 160;
         }
-        
+
     }
 
     applyGravity() {
@@ -97,20 +99,20 @@ class MovableObject extends DrawableObject {
         if (this instanceof Endboss) {
             this.energy -= 10;
             //this.lastHit = new Date().getTime();
-        }else if (!enemy.deadEnemy) {
-        this.energy -= 5;
+        } else if (!enemy.deadEnemy) {
+            this.energy -= 5;
         }
         if (this.energy < 0) {
             this.energy = 0;
-        } else if(!enemy.deadEnemy) {
+        } else if (!enemy.deadEnemy) {
             this.lastHit = new Date().getTime();
         }
     }
 
-    hitEnemy(){
+    hitEnemy() {
         this.energy = 0
     }
-    
+
     isHurt() {
         let timesPassed = new Date().getTime() - this.lastHit;
         return timesPassed < 100;
@@ -123,27 +125,28 @@ class MovableObject extends DrawableObject {
 
     animateWalk() {
         if (!this.deadEnemy) {
-           this.id1 = setInterval(() => {
-               this.moveLeft();
-           }, 1000 / 60)
-           this.id2 = setInterval(() => {
-               this.playAnimation(this.imagesWalking);
-           }, 100) 
+            this.id1 = setInterval(() => {
+                this.moveLeft();
+            }, 1000 / 60)
+            this.id2 = setInterval(() => {
+                this.playAnimation(this.imagesWalking);
+            }, 100)
         } else {
-           this.playAnimation(this.imagesDead);
+            //this.chicken_sound.play();
+            this.playAnimation(this.imagesDead);
         }
 
-   }
-
-   animateDeath(){
-       this.playAnimation(this.imagesDead);
-   }
-
-   setFirstDead(firstDead) {
-    if (!firstDead) {
-        return this.currentImage = 0;
-    } else {
-        return true
     }
-}
+
+    animateDeath() {
+        this.playAnimation(this.imagesDead);
+    }
+
+    setFirstDead(firstDead) {
+        if (!firstDead) {
+            return this.currentImage = 0;
+        } else {
+            return true
+        }
+    }
 }
