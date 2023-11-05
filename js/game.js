@@ -1,7 +1,14 @@
-let canvas;
 let world;
 let keyboard = new Keyboard();
 let gameRestarted = false;
+let fullscreenOpend = false;
+
+let canvas = document.getElementById('canvas');
+let fullscreen = document.getElementById('fullscreen');
+let startscreen = document.getElementById('startscreen');
+let endscreen = document.getElementById('endscreen');
+let startIMG = document.getElementById('startIMG');
+let endIMG = document.getElementById('endIMG');
 
 function startGame() {
     document.getElementById('startscreen').classList.add('d-none');
@@ -53,7 +60,6 @@ window.addEventListener("keyup", (e) => {
 
 function init() {
     if (!gameRestarted) {
-        canvas = document.getElementById('canvas');
         world = new World(canvas, keyboard)
     } else {
         location.reload();
@@ -64,3 +70,45 @@ function init() {
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
+
+function toggleFullscreen() {
+    if (!fullscreenOpend) {
+        enterFullscreen(fullscreen);
+        startscreen.classList.add('enterFullscreen')
+        endscreen.classList.add('enterFullscreen')
+        canvas.classList.add('enterFullscreen')
+        startIMG.classList.add('enterFullscreen');
+        endIMG.classList.add('enterFullscreen')
+        fullscreenOpend = true;
+    } else {
+        exitFullscreen()
+        startscreen.classList.remove('enterFullscreen')
+        endscreen.classList.remove('enterFullscreen')
+        canvas.classList.remove('enterFullscreen')
+        startIMG.classList.remove('enterFullscreen');
+        endIMG.classList.remove('enterFullscreen')
+        fullscreenOpend = false;
+    }
+}
+
+
+function enterFullscreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
+        element.msRequestFullscreen();
+    } else if (element.webkitRequestFullscreen) {  // iOS Safari
+        element.webkitRequestFullscreen();
+    }
+}
+
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    }
+}
+
+
+

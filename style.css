@@ -23,6 +23,11 @@ canvas{
     display: none !important;
 }
 
+.enterFullscreen{
+    width: 100% !important;
+    height: 100vh !important;
+}
+
 .fullscreen{
     position: relative;
 }
