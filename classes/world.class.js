@@ -118,6 +118,7 @@ class World {
                 } else if (bottle.isColliding(enemy) && enemy instanceof Endboss) {
                     bottle.animateBottleSplash()
                     enemy.hit(enemy);
+                    enemy.chicken_sound.play();
                     this.statusbarHealthEndboss.setPercentage(enemy.energy)
                     console.log('Bottle hit an Endboss Energy is' + enemy.energy);
                 }

@@ -63,53 +63,15 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
-    // animate() {
-    //     let i = 0;
-    //     this.id5 = setInterval(() => {
-    //         if (i < 15) {
-    //             this.playAnimation(this.imagesAlert);
-    //         } else if (this.x - world.character.x < 80) {
-    //             this.playAnimation(this.imagesAttack);
-    //             this.moveLeft();
-    //         } else if (this.isHurt()) {
-    //             this.playAnimation(this.imagesHurt);
-    //         } else if (this.isDead()) {
-    //             clearInterval(this.id1);
-    //             clearInterval(this.id2);
-    //             clearInterval(this.id3);
-    //             clearInterval(this.id4);
-    //             clearInterval(this.id6);
-    //             this.currentImage = 0;
-
-    //             if(this.currentImage > this.imagesDead.length) {
-    //                 world.killEnemy(this)
-    //             }else{
-    //                 this.playAnimation(this.imagesDead);
-    //             }
-    //             // this.playAnimation(this.imagesDead);
-    //             // world.killEnemy(this)
-    //         } else {
-    //             this.playAnimation(this.imagesWalking);
-    //             this.moveLeft();
-    //         }
-
-    //         i++;
-
-    //         if (world && world.character.x > 1600 && !this.hadFirstContact) {
-    //             i = 0;
-    //             this.placeEndbossforFirstContact()
-    //         }
-    //     }, 100);
-    // }
-
     animate() {
         let i = 0;
         this.id5 = setInterval(() => {
             if (i < 15) {
                 this.playAnimation(this.imagesAlert);
-            } else if (world && this.x - world.character.x < 80) {
+            } else if (world && this.x - world.character.x < 90) {
                 this.playAnimation(this.imagesAttack);
                 this.moveLeft();
+                this.chicken_sound.play();
             } else if (this.isHurt()) {
                 this.playAnimation(this.imagesHurt);
             } else if (this.isDead()) {

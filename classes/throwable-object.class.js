@@ -15,6 +15,8 @@ class ThrowableObject extends MovableObject {
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png',
     ]
 
+    glas_shatter_sound = new Audio('audio/glas_shatter.mp3')
+
     constructor(x, y, world) {
         super().loadIMG('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
         this.x = x;
@@ -56,6 +58,7 @@ class ThrowableObject extends MovableObject {
         clearInterval(this.id3)
         clearInterval(this.id4)
         this.playAnimation(this.imagesSplash)
+        this-this.glas_shatter_sound.play();
 
         setTimeout(() => {
             // Überprüfen Sie erneut, ob sich die Flasche noch im throwableObject-Array befindet
