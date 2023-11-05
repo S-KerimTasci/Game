@@ -6,6 +6,7 @@ class MovableObject extends DrawableObject {
     accelaration = 1.5;
 
     chicken_sound = new Audio('audio/chicken.mp3')
+    jump_sound = new Audio('audio/jump.mp3')
 
     // ID to stop the animate enemy intervall
     id1;
@@ -74,6 +75,7 @@ class MovableObject extends DrawableObject {
 
     jump() {
         this.speedY = 25;
+        this.jump_sound.play();
     }
 
     isColliding(mo) {
