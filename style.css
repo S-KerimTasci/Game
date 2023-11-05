@@ -67,7 +67,24 @@ button{
 .intro_outro_img{
     width: 720px;
     height: 480px;
-    
+}
+
+.permanentBTNdiv{
+    display: flex;
+    position: absolute;
+    right: 5px;
+    bottom: 10px;
+    gap: 0%;
+    width: 100px;
+    justify-content: space-between;
+}
+
+.permanentBTN{
+    display: flex;
+}
+
+.permanentBTNimg{
+    height: 22px;
 }
 
 @media only screen and (max-width: 720px){

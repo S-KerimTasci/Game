@@ -9,6 +9,7 @@ let startscreen = document.getElementById('startscreen');
 let endscreen = document.getElementById('endscreen');
 let startIMG = document.getElementById('startIMG');
 let endIMG = document.getElementById('endIMG');
+let fullscreenIMG = document.getElementById('fullscreenIMG');
 
 function startGame() {
     document.getElementById('startscreen').classList.add('d-none');
@@ -89,6 +90,7 @@ function setFullscreenCSS() {
     canvas.classList.add('enterFullscreen');
     startIMG.classList.add('enterFullscreen');
     endIMG.classList.add('enterFullscreen');
+    fullscreenIMG.src = "img/exit_fullscreen.png"
 }
 
 function setExitFullscreenCSS() {
@@ -97,6 +99,7 @@ function setExitFullscreenCSS() {
     canvas.classList.remove('enterFullscreen');
     startIMG.classList.remove('enterFullscreen');
     endIMG.classList.remove('enterFullscreen');
+    fullscreenIMG.src = "img/fullscreen.png"
 }
 
 
