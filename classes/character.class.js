@@ -57,6 +57,8 @@ class Character extends MovableObject {
     
 
     walking_sound = new Audio('audio/walking.mp3')
+    hurt_sound = new Audio('audio/hurt.mp3')
+    dying_sound = new Audio('audio/dying.mp3')
 
 
     constructor() {
@@ -102,14 +104,11 @@ class Character extends MovableObject {
                 if (this.currentImage == this.imagesDead.length) {
                     clearInterval(this.id6);
                     endGame();
+                    this.dying_sound.play();
                 }
-                // if(this.currentImage > this.imagesDead.length) {
-                //     this.currentImage == 0;
-                //     this.playAnimation(this.imagesDead)
-                //     clearInterval(this.id6);
-                // }
             } else if (this.isHurt()) {
                this.playAnimation(this.imagesHurt)
+               this.hurt_sound.play();
             }
              else if (this.isAboveGround()) {
                 this.playAnimation(this.imagesJumping)
