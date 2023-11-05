@@ -1,16 +1,18 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let gameRestarted = false;
 
-function startGame(){
+function startGame() {
     document.getElementById('startscreen').classList.add('d-none');
-    document.getElementById('endscreen').classList.add('d-none'); 
+    document.getElementById('endscreen').classList.add('d-none');
     init();
 }
 
-function endGame(){
+function endGame() {
     clearAllIntervals()
-    document.getElementById('endscreen').classList.remove('d-none');   
+    document.getElementById('endscreen').classList.remove('d-none');
+    gameRestarted = true;
 }
 
 window.addEventListener("keydown", (e) => {
@@ -41,25 +43,24 @@ window.addEventListener("keydown", (e) => {
 
 
 window.addEventListener("keyup", (e) => {
-        keyboard.RIGHT = false;
-        keyboard.LEFT = false;
-        keyboard.UP = false;
-        keyboard.DOWN = false;
-        keyboard.SPACE = false;
-        keyboard.ACTION = false;
+    keyboard.RIGHT = false;
+    keyboard.LEFT = false;
+    keyboard.UP = false;
+    keyboard.DOWN = false;
+    keyboard.SPACE = false;
+    keyboard.ACTION = false;
 })
 
-function init(){
-    canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard)
-
-    console.log('My character is', world.character )  
+function init() {
+    if (!gameRestarted) {
+        canvas = document.getElementById('canvas');
+        world = new World(canvas, keyboard)
+    } else {
+        location.reload();
+    }
 }
 
-// function endgame(){
-//     console.log('Game Over')
-// }
 
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
-  }
+}
