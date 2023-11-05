@@ -218,9 +218,9 @@ class World {
             //setTimeout(() => {
                 clearInterval(enemy.id5);
             //}, 200);
-            
-            
         }
+
+        enemy.chicken_sound.play();
 
 
         // Verwenden Sie setTimeout, um den getroffenen Gegner aus dem Array zu entfernen
