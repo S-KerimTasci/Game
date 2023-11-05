@@ -11,6 +11,8 @@ class Endboss extends MovableObject {
 
     hadFirstContact = false;
     fristDead = false;
+    
+    game_win_sound = new Audio('audio/game_win.mp3')
 
     imagesAlert = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
@@ -86,6 +88,7 @@ class Endboss extends MovableObject {
                 if (this.currentImage == this.imagesDead.length) {
                     world.killEnemy(this);
                     endGame();
+                    this.game_win_sound.play();
                 }
             } else {
                 this.playAnimation(this.imagesWalking);

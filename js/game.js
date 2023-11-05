@@ -2,7 +2,7 @@ let world;
 let keyboard = new Keyboard();
 let gameRestarted = false;
 let fullscreenOpend = false;
-let soundOn = false;
+let soundOn = true;
 
 let canvas = document.getElementById('canvas');
 let fullscreen = document.getElementById('fullscreen');
