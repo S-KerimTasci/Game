@@ -2,6 +2,7 @@ let world;
 let keyboard = new Keyboard();
 let gameRestarted = false;
 let fullscreenOpend = false;
+let soundOn = false;
 
 let canvas = document.getElementById('canvas');
 let fullscreen = document.getElementById('fullscreen');
@@ -10,15 +11,22 @@ let endscreen = document.getElementById('endscreen');
 let startIMG = document.getElementById('startIMG');
 let endIMG = document.getElementById('endIMG');
 let fullscreenIMG = document.getElementById('fullscreenIMG');
+let speakerIMG = document.getElementById('speakerIMG');
+
+let game_sound = new Audio('audio/backgroundmusic.ogg')
 
 function startGame() {
     document.getElementById('startscreen').classList.add('d-none');
     document.getElementById('endscreen').classList.add('d-none');
     init();
+    if (soundOn) {
+        game_sound.play();
+    }
 }
 
 function endGame() {
     clearAllIntervals()
+    game_sound.pause();
     document.getElementById('endscreen').classList.remove('d-none');
     gameRestarted = true;
 }
@@ -81,6 +89,20 @@ function toggleFullscreen() {
         exitFullscreen()
         setFullscreenCSS('remove');
         fullscreenOpend = false;
+    }
+}
+
+function toggleSound(){
+    if (!soundOn) {
+        speakerIMG.src = "img/speaker.png"
+        soundOn = true;
+        if (world) {
+            game_sound.play()
+        }
+    } else {
+        speakerIMG.src = "img/speaker_x.png"
+        soundOn =false;
+        game_sound.pause();
     }
 }
 
