@@ -210,19 +210,15 @@ class World {
 
     killEnemy(enemy) {
         if (!(enemy instanceof Endboss)) {
-            // Stoppen Sie die laufende Animation des Gegners
             enemy.deadEnemy = true;
             clearInterval(enemy.id1);
             clearInterval(enemy.id2);
             enemy.animateDeath();
         } else {
-            //setTimeout(() => {
                 clearInterval(enemy.id5);
-            //}, 200);
         }
 
         enemy.chicken_sound.play();
-
 
         // Verwenden Sie setTimeout, um den getroffenen Gegner aus dem Array zu entfernen
         setTimeout(() => {

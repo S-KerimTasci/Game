@@ -38,9 +38,7 @@ class ThrowableObject extends MovableObject {
             this.applyGravity();
 
             this.animateBottleThrow();
-            
-
-            
+                        
             this.world.updateBottleStatusbar()
         }
     }

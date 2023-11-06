@@ -11,7 +11,7 @@ class Endboss extends MovableObject {
 
     hadFirstContact = false;
     fristDead = false;
-    
+
     game_win_sound = new Audio('audio/game_win.mp3')
 
     imagesAlert = [
@@ -71,30 +71,18 @@ class Endboss extends MovableObject {
             if (i < 15) {
                 this.playAnimation(this.imagesAlert);
             } else if (world && this.x - world.character.x < 90) {
-                this.playAnimation(this.imagesAttack);
-                this.moveLeft();
-                this.chicken_sound.play();
+                this.endbossAttacks();
             } else if (this.isHurt()) {
                 this.playAnimation(this.imagesHurt);
             } else if (this.isDead()) {
-                this.setFirstDead(this.firstDead)
-                this.firstDead = true;
-                clearInterval(this.id1);
-                clearInterval(this.id2);
-                clearInterval(this.id3);
-                clearInterval(this.id4);
-                clearInterval(this.id6);
-                this.playAnimation(this.imagesDead);
+                this.killEndboss();
                 if (this.currentImage == this.imagesDead.length) {
-                    world.killEnemy(this);
-                    endGame();
-                    this.game_win_sound.play();
+                    this.winGame();
                 }
             } else {
                 this.playAnimation(this.imagesWalking);
                 this.moveLeft();
             }
-
             i++;
 
             if (world && world.character.x > 1600 && !this.hadFirstContact) {
@@ -109,7 +97,30 @@ class Endboss extends MovableObject {
         this.hadFirstContact = true;
     }
 
-    
+    killEndboss() {
+        this.setFirstDead(this.firstDead)
+        this.firstDead = true;
+        clearInterval(this.id1);
+        clearInterval(this.id2);
+        clearInterval(this.id3);
+        clearInterval(this.id4);
+        clearInterval(this.id6);
+        this.playAnimation(this.imagesDead);
+    }
+
+    endbossAttacks() {
+        this.playAnimation(this.imagesAttack);
+        this.moveLeft();
+        this.chicken_sound.play();
+    }
+
+    winGame() {
+        world.killEnemy(this);
+        endGame();
+        this.game_win_sound.play();
+    }
+
+
 }
 
 

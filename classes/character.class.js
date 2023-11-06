@@ -48,13 +48,13 @@ class Character extends MovableObject {
 
     collectedSalsaBottles = 0
 
-    offset ={
-        top:100,
-        bottom:90,
-        left:10,
-        right:30
+    offset = {
+        top: 100,
+        bottom: 90,
+        left: 10,
+        right: 30
     }
-    
+
 
     walking_sound = new Audio('audio/walking.mp3')
     hurt_sound = new Audio('audio/hurt.mp3')
@@ -94,25 +94,15 @@ class Character extends MovableObject {
 
         this.id6 = setInterval(() => {
             if (this.isDead()) {
-                this.setFirstDead(this.characterDead)
-                this.characterDead = true;
-                clearInterval(this.id1);
-                clearInterval(this.id2);
-                clearInterval(this.id3);
-                clearInterval(this.id4);
-                clearInterval(this.id5);
-                this.playAnimation(this.imagesDead);
+                this.killCharacter();
                 if (this.currentImage == this.imagesDead.length) {
-                    clearInterval(this.id6);
-                    this.dying_sound.play();
-                    endGame();
-                    this.game_lost_sound.play();
+                    this.loseGame();
                 }
             } else if (this.isHurt()) {
-               this.playAnimation(this.imagesHurt)
-               this.hurt_sound.play();
+                this.playAnimation(this.imagesHurt)
+                this.hurt_sound.play();
             }
-             else if (this.isAboveGround()) {
+            else if (this.isAboveGround()) {
                 this.playAnimation(this.imagesJumping)
             } else {
                 this.walking_sound.pause();
@@ -124,4 +114,21 @@ class Character extends MovableObject {
         }, 50)
     }
 
+    killCharacter() {
+        this.setFirstDead(this.characterDead)
+        this.characterDead = true;
+        clearInterval(this.id1);
+        clearInterval(this.id2);
+        clearInterval(this.id3);
+        clearInterval(this.id4);
+        clearInterval(this.id5);
+        this.playAnimation(this.imagesDead);
+    }
+
+    loseGame() {
+        clearInterval(this.id6);
+        this.dying_sound.play();
+        endGame();
+        this.game_lost_sound.play();
+    }
 }

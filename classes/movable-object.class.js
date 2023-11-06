@@ -53,7 +53,6 @@ class MovableObject extends DrawableObject {
             this.speedY = 0;
             this.y = 160;
         }
-
     }
 
     applyGravity() {
@@ -83,24 +82,11 @@ class MovableObject extends DrawableObject {
             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
             this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
-
-        /*(this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) &&
-            (this.y + this.offsetY + this.height) >= obj.y &&
-            (this.y + this.offsetY) <= (obj.y + obj.height) &&
-            obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
-        
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x &&
-            this.y < mo.y + mo.height;
-
-            */
     }
 
     hit(enemy) {
         if (this instanceof Endboss) {
             this.energy -= 10;
-            //this.lastHit = new Date().getTime();
         } else if (!enemy.deadEnemy) {
             this.energy -= 5;
         }
@@ -118,7 +104,6 @@ class MovableObject extends DrawableObject {
     isHurt() {
         let timesPassed = new Date().getTime() - this.lastHit;
         return timesPassed < 100;
-
     }
 
     isDead() {
@@ -134,7 +119,6 @@ class MovableObject extends DrawableObject {
                 this.playAnimation(this.imagesWalking);
             }, 100)
         } else {
-            //this.chicken_sound.play();
             this.playAnimation(this.imagesDead);
         }
 
