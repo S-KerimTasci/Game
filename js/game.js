@@ -8,6 +8,7 @@ let canvas = document.getElementById('canvas');
 let fullscreen = document.getElementById('fullscreen');
 let startscreen = document.getElementById('startscreen');
 let endscreen = document.getElementById('endscreen');
+let infoscreen = document.getElementById('infoscreen');
 let startIMG = document.getElementById('startIMG');
 let endIMG = document.getElementById('endIMG');
 let fullscreenIMG = document.getElementById('fullscreenIMG');
@@ -109,6 +110,7 @@ function toggleSound(){
 function setFullscreenCSS(x) {
     startscreen.classList[x]('enterFullscreen');
     endscreen.classList[x]('enterFullscreen');
+    infoscreen.classList[x]('enterFullscreen');
     canvas.classList[x]('enterFullscreen');
     startIMG.classList[x]('enterFullscreen');
     endIMG.classList[x]('enterFullscreen');
@@ -136,6 +138,10 @@ function exitFullscreen() {
     } else if (document.webkitExitFullscreen) {
         document.webkitExitFullscreen();
     }
+}
+
+function toggleInfoscreen(x){
+    infoscreen.classList[x]('d-none');
 }
 
 

@@ -54,6 +54,37 @@ button{
     top:0;
 }
 
+.infoscreen{
+    position: absolute;
+    top: 0;
+    background: hsl(0deg 0% 82.82% / 90%);
+    width: 720px;
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5em;
+    line-height: 38px;
+}
+
+.infoscreen_text{
+    padding: 4%;
+}
+
+.infoscreen_element_div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.infoscreen_element{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 3%;
+    padding: 0.5%;
+}
+
 .startBTN{
     position: absolute;
     bottom: 10px;
@@ -61,7 +92,6 @@ button{
     display: flex;
     justify-content: center;
     gap: 3%;
-    
 }
 
 .intro_outro_img{
@@ -87,6 +117,16 @@ button{
     height: 22px;
 }
 
+.closeInfoBTN{
+    position: absolute;
+    top: 10px;
+    right: 5px;
+}
+
+.controlIMG{
+    height: 40px;
+}
+
 @media only screen and (max-width: 720px){
     .startscreen{
         width: 100%;
@@ -94,6 +134,12 @@ button{
 
     .intro_outro_img{
         width: 100%;
+    }
+
+    .infoscreen{
+        width: 100%;
+        font-size: unset;
+        line-height: unset;
     }
 
     canvas{
@@ -109,6 +155,12 @@ button{
 
     .intro_outro_img{
         height: 100vh;
+    }
+
+    .infoscreen{
+        height: 100vh;
+        font-size: unset;
+        line-height: unset;
     }
 
     canvas{
