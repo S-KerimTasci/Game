@@ -1,6 +1,5 @@
 let world;
 let keyboard = new Keyboard();
-let gameRestarted = false;
 let fullscreenOpend = false;
 let soundOn = true;
 
@@ -41,7 +40,12 @@ function endGame() {
     clearAllIntervals()
     game_sound.pause();
     document.getElementById('endscreen').classList.remove('d-none');
-    gameRestarted = true;
+}
+
+function goBackToStartscreen() {
+    document.getElementById('endscreen').classList.add('d-none');
+    document.getElementById('startscreen').classList.remove('d-none');
+
 }
 
 window.addEventListener("keydown", (e) => {
@@ -81,12 +85,9 @@ window.addEventListener("keyup", (e) => {
 })
 
 function init() {
-    //if (!gameRestarted) {
         initLevel();
         world = new World(canvas, keyboard)
-    // } else {
-    //     location.reload();
-    // }
+
 }
 
 
@@ -136,9 +137,6 @@ function setFullscreenCSS(x) {
 
 
 function enterFullscreen(element) {
-    // for (let i = 0; i < fullscreenArray.length; i++) {
-    //     let element = fullscreenArray[i];
-        
         if (element.requestFullscreen) {
             element.requestFullscreen();
         } else if (element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
@@ -146,7 +144,7 @@ function enterFullscreen(element) {
         } else if (element.webkitRequestFullscreen) {  // iOS Safari
             element.webkitRequestFullscreen();
         }
-     //}
+
 }
 
 function exitFullscreen() {
