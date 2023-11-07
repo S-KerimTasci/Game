@@ -1,5 +1,5 @@
 class Endboss extends MovableObject {
-    x = 8000;
+    x = 80000;
     y = 50;
     height = 400;
     width = 220;
@@ -8,6 +8,13 @@ class Endboss extends MovableObject {
     energy = 100
 
     hits = 0;
+
+    offset = {
+        top: 90,
+        bottom: 0,
+        left: 0,
+        right: 0
+    }
 
     hadFirstContact = false;
     fristDead = false;

@@ -1,9 +1,9 @@
 @font-face {
     font-family: 'Rye';
     src: url('fonts/rye_regular.ttf') format('truetype');
-} 
+}
 
-body{
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,13 +18,13 @@ body{
 
 }
 
-canvas{
+canvas {
     background-color: black;
     display: block;
 }
 
-button{
-    background-color:#FBA83C;
+button {
+    background-color: #FBA83C;
     font-family: 'Rye', Arial, Helvetica, sans-serif;
     cursor: pointer;
     padding: 10px;
@@ -33,37 +33,37 @@ button{
     font-weight: bold;
 }
 
-.d-none{
+.d-none {
     display: none !important;
 }
 
-.enterFullscreen{
+.enterFullscreen {
     width: 100% !important;
     height: 100vh !important;
 }
 
-.fullscreen{
+.fullscreen {
     position: relative;
     width: 720px;
     /* height: 480px; */
     aspect-ratio: 720 / 480;
 }
 
-.startscreen{
+.startscreen {
     display: block;
     position: absolute;
     width: 100%;
     height: 100%;
 }
 
-.endscreen{
+.endscreen {
     position: absolute;
-    top:0;
+    top: 0;
     width: 100%;
     height: 100%;
 }
 
-.infoscreen{
+.infoscreen {
     position: absolute;
     top: 0;
     background: hsl(0deg 0% 82.82% / 90%);
@@ -75,17 +75,17 @@ button{
     height: 100%;
 }
 
-.infoscreen_text{
+.infoscreen_text {
     padding: 4%;
 }
 
-.infoscreen_element_div{
+.infoscreen_element_div {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.infoscreen_element{
+.infoscreen_element {
     display: flex;
     width: 100%;
     height: 100%;
@@ -95,7 +95,7 @@ button{
     padding: 0.5%;
 }
 
-.startBTN{
+.startBTN {
     position: absolute;
     bottom: 10px;
     width: 100%;
@@ -104,13 +104,13 @@ button{
     gap: 3%;
 }
 
-.intro_outro_img{
+.intro_outro_img {
     width: 720px;
     /* height: 480px; */
     aspect-ratio: 720 / 480;
 }
 
-.permanentBTNdivInGame{
+.permanentBTNdivInGame {
     display: flex;
     position: absolute;
     right: calc(50% - 46px) !important;
@@ -119,7 +119,7 @@ button{
     justify-content: space-between;
 }
 
-.permanentBTNdiv{
+.permanentBTNdiv {
     display: flex;
     position: absolute;
     right: 5px;
@@ -128,63 +128,79 @@ button{
     justify-content: space-between;
 }
 
-.permanentBTN{
+.permanentBTN {
     display: flex;
 }
 
-.permanentBTNimg{
+.permanentBTNimg {
     height: 22px;
 }
 
-.closeInfoBTN{
+.closeInfoBTN {
     position: absolute;
     top: 10px;
     right: 5px;
 }
 
-.controlIMG{
+.controlIMG {
     height: 40px;
 }
 
-@media only screen and (max-width: 1000px){
-    .fullscreen{
+@media only screen and (max-width: 1000px) {
+    .fullscreen {
         width: 100%;
     }
 
 
-    .intro_outro_img{
+    .intro_outro_img {
         width: 100%;
     }
 
-    .infoscreen{
+    .infoscreen {
         width: 100%;
         font-size: unset;
         line-height: unset;
     }
 
-    canvas{
+    canvas {
         width: 100%;
     }
-    
+
+    .hud {
+        display: flex;
+        position: absolute;
+        width: 100%;
+        justify-content: space-between;
+        bottom: 4%;
+    }
+
+    .pannelLeft{
+        padding-left: 8px;
+    }
+
+    .pannelRight{
+        padding-right: 8px;
+    }
+
 }
 
-@media only screen and (max-height: 480px){
-    .fullscreen{
+@media only screen and (max-height: 480px) {
+    .fullscreen {
         height: 100% !important;
         aspect-ratio: unset;
     }
 
-    .intro_outro_img{
+    .intro_outro_img {
         height: 100vh;
     }
 
-    .infoscreen{
+    .infoscreen {
         height: 100vh;
         font-size: unset;
         line-height: unset;
     }
 
-    canvas{
+    canvas {
         height: 100vh;
     }
 
@@ -194,15 +210,15 @@ button{
 }
 
 @media (max-width: 500px) {
-    button{
+    button {
         font-size: 10px;
     }
-    
-    .permanentBTNimg{
+
+    .permanentBTNimg {
         height: 10px;
     }
 
-    .permanentBTNdiv{
+    .permanentBTNdiv {
         width: 80px;
 
     }
