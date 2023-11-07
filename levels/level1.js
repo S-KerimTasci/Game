@@ -1,4 +1,8 @@
-const level1 = new Level(
+let level1 ;
+
+
+function initLevel(){
+level1= new Level(
     [
         new BackgroundObject('img/5_background/layers/air.png', -719),
         new BackgroundObject('img/5_background/layers/3_third_layer/2.png', -719),
@@ -59,6 +63,9 @@ const level1 = new Level(
     ]
 )
 
+// const MAX_SALSA_BOTTLES = countSalsaObjects(level1.object);
+}
+
 function countSalsaObjects(objects) {
     let count = 0;
     for (const obj of objects) {
@@ -69,4 +76,3 @@ function countSalsaObjects(objects) {
     return count;
 }
 
-const MAX_SALSA_BOTTLES = countSalsaObjects(level1.object);

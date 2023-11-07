@@ -12,6 +12,8 @@ class World {
     throwableObject = [];
     firstContact = false;
 
+    
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -190,6 +192,7 @@ class World {
 
     updateBottleStatusbar() {
         const bottlesRemaining = this.character.collectedSalsaBottles;
+        const MAX_SALSA_BOTTLES = countSalsaObjects(level1.object);
         // Annahme: MAX_SALSA_BOTTLES ist die maximale Anzahl der Salsa-Flaschen, die der Charakter halten kann.
         const percentage = (bottlesRemaining / MAX_SALSA_BOTTLES) * 100;
         this.statusbarBottle.setPercentage(percentage);
