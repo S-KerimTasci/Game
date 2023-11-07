@@ -111,8 +111,12 @@ button{
 }
 
 .permanentBTNdivInGame{
+    display: flex;
+    position: absolute;
     right: calc(50% - 46px) !important;
     top: 10px !important;
+    width: 100px;
+    justify-content: space-between;
 }
 
 .permanentBTNdiv{

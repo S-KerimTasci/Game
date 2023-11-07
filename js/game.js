@@ -12,6 +12,7 @@ let startIMG = document.getElementById('startIMG');
 let endIMG = document.getElementById('endIMG');
 let fullscreenIMG = document.getElementById('fullscreenIMG');
 let speakerIMG = document.getElementById('speakerIMG');
+let permanentBTNdiv = document.getElementById('permanentBTNdiv');
 
 let game_sound = new Audio('audio/backgroundmusic.ogg')
 
@@ -28,8 +29,10 @@ document.addEventListener('fullscreenchange', () => {
 });
 
 function startGame() {
-    document.getElementById('startscreen').classList.add('d-none');
-    document.getElementById('endscreen').classList.add('d-none');
+    startscreen.classList.add('d-none');
+    endscreen.classList.add('d-none');
+    permanentBTNdiv.classList.remove('permanentBTNdiv');
+    permanentBTNdiv.classList.add('permanentBTNdivInGame')
     init();
     if (soundOn) {
         game_sound.play();
@@ -39,12 +42,14 @@ function startGame() {
 function endGame() {
     clearAllIntervals()
     game_sound.pause();
-    document.getElementById('endscreen').classList.remove('d-none');
+    endscreen.classList.remove('d-none');
+    permanentBTNdiv.classList.add('permanentBTNdiv');
+    permanentBTNdiv.classList.remove('permanentBTNdivInGame')
 }
 
 function goBackToStartscreen() {
-    document.getElementById('endscreen').classList.add('d-none');
-    document.getElementById('startscreen').classList.remove('d-none');
+    endscreen.classList.add('d-none');
+    startscreen.classList.remove('d-none');
 
 }
 
