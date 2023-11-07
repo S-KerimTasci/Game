@@ -53,41 +53,6 @@ function goBackToStartscreen() {
 
 }
 
-window.addEventListener("keydown", (e) => {
-    if (e.keyCode == 39) {
-        keyboard.RIGHT = true;
-    }
-
-    if (e.keyCode == 37) {
-        keyboard.LEFT = true;
-    }
-
-    if (e.keyCode == 38) {
-        keyboard.UP = true;
-    }
-
-    if (e.keyCode == 40) {
-        keyboard.DOWN = true;
-    }
-
-    if (e.keyCode == 32) {
-        keyboard.SPACE = true;
-    }
-
-    if (e.keyCode == 69 && world.character.collectedSalsaBottles > 0) {
-        keyboard.ACTION = true;
-    }
-})
-
-
-window.addEventListener("keyup", (e) => {
-    keyboard.RIGHT = false;
-    keyboard.LEFT = false;
-    keyboard.UP = false;
-    keyboard.DOWN = false;
-    keyboard.SPACE = false;
-    keyboard.ACTION = false;
-})
 
 function init() {
         initLevel();
@@ -163,6 +128,43 @@ function exitFullscreen() {
 function toggleInfoscreen(x){
     infoscreen.classList[x]('d-none');
 }
+
+window.addEventListener("keydown", (e) => {
+    if (e.keyCode == 39) {
+        keyboard.RIGHT = true;
+    }
+
+    if (e.keyCode == 37) {
+        keyboard.LEFT = true;
+    }
+
+    if (e.keyCode == 38) {
+        keyboard.UP = true;
+    }
+
+    if (e.keyCode == 40) {
+        keyboard.DOWN = true;
+    }
+
+    if (e.keyCode == 32) {
+        keyboard.SPACE = true;
+    }
+
+    if (e.keyCode == 69 && world.character.collectedSalsaBottles > 0) {
+        keyboard.ACTION = true;
+    }
+})
+
+
+window.addEventListener("keyup", (e) => {
+    keyboard.RIGHT = false;
+    keyboard.LEFT = false;
+    keyboard.UP = false;
+    keyboard.DOWN = false;
+    keyboard.SPACE = false;
+    keyboard.ACTION = false;
+})
+
 
 
 
