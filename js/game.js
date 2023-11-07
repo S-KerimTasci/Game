@@ -3,7 +3,6 @@ let keyboard = new Keyboard();
 let gameRestarted = false;
 let fullscreenOpend = false;
 let soundOn = true;
-let ESCpressed = false;
 
 let canvas = document.getElementById('canvas');
 let fullscreen = document.getElementById('fullscreen');
@@ -15,11 +14,19 @@ let endIMG = document.getElementById('endIMG');
 let fullscreenIMG = document.getElementById('fullscreenIMG');
 let speakerIMG = document.getElementById('speakerIMG');
 
-let fullscreenArray = [fullscreen, startscreen, endscreen, infoscreen, canvas, startIMG, endIMG ]
-
-fullscreen.addEventListener('click', enterFullscreen);
-
 let game_sound = new Audio('audio/backgroundmusic.ogg')
+
+document.addEventListener('fullscreenchange', () => {
+    if (document.fullscreenElement === null) {
+        // Vollbildmodus wurde deaktiviert
+        setFullscreenCSS('remove');
+        fullscreenOpend = false;
+    } else {
+        // Vollbildmodus wurde aktiviert
+        setFullscreenCSS('add');
+        fullscreenOpend = true;
+    }
+});
 
 function startGame() {
     document.getElementById('startscreen').classList.add('d-none');
@@ -61,11 +68,6 @@ window.addEventListener("keydown", (e) => {
     if (e.keyCode == 69 && world.character.collectedSalsaBottles > 0) {
         keyboard.ACTION = true;
     }
-
-    // if (e.keyCode == 27 && fullscreenOpend) {
-    //     ESCpressed = true;
-    //     toggleFullscreen();
-    // }
 })
 
 
@@ -76,8 +78,6 @@ window.addEventListener("keyup", (e) => {
     keyboard.DOWN = false;
     keyboard.SPACE = false;
     keyboard.ACTION = false;
-
-    ESCpressed = false;
 })
 
 function init() {
