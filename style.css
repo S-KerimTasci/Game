@@ -146,11 +146,36 @@ button {
     height: 40px;
 }
 
+.hud {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    justify-content: space-between;
+    bottom: 4%;
+}
+
+.pannel{
+    display: flex;
+    justify-content: space-around;
+    width: 20%;
+}
+
+.pannelIMG{
+    height: 20px;
+}
+
+.pannelBTN{
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media only screen and (max-width: 1000px) {
     .fullscreen {
         width: 100%;
     }
-
 
     .intro_outro_img {
         width: 100%;
@@ -165,23 +190,6 @@ button {
     canvas {
         width: 100%;
     }
-
-    .hud {
-        display: flex;
-        position: absolute;
-        width: 100%;
-        justify-content: space-between;
-        bottom: 4%;
-    }
-
-    .pannelLeft{
-        padding-left: 8px;
-    }
-
-    .pannelRight{
-        padding-right: 8px;
-    }
-
 }
 
 @media only screen and (max-height: 480px) {
@@ -220,6 +228,45 @@ button {
 
     .permanentBTNdiv {
         width: 80px;
+    }
 
+    .hud {
+        bottom: 2% !important;
+    }
+    
+    .pannel{
+        display: flex;
+        justify-content: space-around;
+        width: 25%;
+    }
+    
+    .pannelIMG{
+        height: 15px !important;
+    }
+    
+    .pannelBTN{
+        height: 35px !important;
+        width: 35px !important;
+    }
+}
+
+@media (max-width: 650px) {
+    .hud {
+        bottom: 3%;
+    }
+    
+    .pannel{
+        display: flex;
+        justify-content: space-around;
+        width: 20%;
+    }
+    
+    .pannelIMG{
+        height: 20px;
+    }
+    
+    .pannelBTN{
+        height: 40px;
+        width: 40px;
     }
 }
