@@ -224,7 +224,7 @@ class World {
      * 
      */
     collectCoin() {
-        this.collectedCoin ++ 
+        this.collectedCoin++
         const percentage = (this.collectedCoin / this.MAX_COINS) * 100;
         this.statusbarCoin.setPercentage(percentage);
     }
@@ -358,7 +358,10 @@ class World {
         const endboss = this.level.enemies[this.level.enemies.length - 1];
 
         if (salsaRemaining === 0 && bottlesRemaining === 0 && !endboss.isDead()) {
-            this.character.loseGame();
+            setTimeout(() => {
+                this.character.loseGame();
+            }, 3000);
+
         }
     }
 }
