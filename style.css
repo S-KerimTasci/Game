@@ -75,6 +75,7 @@ button {
 
 .infoscreen_text {
     padding: 4%;
+    font-size: 1.em;
 }
 
 .infoscreen_element_div {
@@ -182,6 +183,8 @@ button {
         width: 100%;
         font-size: unset;
         line-height: unset;
+        display: flex;
+        justify-content: center;
     }
 
     canvas {
@@ -211,6 +214,27 @@ button {
 
     h1 {
         display: none;
+    }
+}
+
+@media (max-width: 650px) {
+    .hud {
+        bottom: 3%;
+    }
+    
+    .pannel{
+        display: flex;
+        justify-content: space-around;
+        width: 20%;
+    }
+    
+    .pannelIMG{
+        height: 20px;
+    }
+    
+    .pannelBTN{
+        height: 40px;
+        width: 40px;
     }
 }
 
@@ -247,23 +271,25 @@ button {
     }
 }
 
-@media (max-width: 650px) {
-    .hud {
-        bottom: 3%;
+@media (max-width: 450px) {
+    .closeInfoBTN {
+        position: absolute;
+        top: 10px;
+        right: 5px;
     }
     
-    .pannel{
-        display: flex;
-        justify-content: space-around;
-        width: 20%;
+    .controlIMG {
+        height: 25px;
+    }
+
+    .infoscreen_text {
+        padding: 4%;
+        margin: 2%;
+        font-size: 0.7em;
     }
     
-    .pannelIMG{
-        height: 20px;
+    .infoscreen_element_div {
+        font-size: 0.7em;
     }
     
-    .pannelBTN{
-        height: 40px;
-        width: 40px;
-    }
 }
