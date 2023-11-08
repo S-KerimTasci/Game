@@ -69,11 +69,16 @@ class Character extends MovableObject {
         this.loadImages(this.imagesDead)
         this.loadImages(this.imagesHurt)
         this.applyGravity()
-        this.animate();
+        this.animateCharacterMovment();
+        this.animateCharacterIMG();
     }
 
 
-    animate() {
+    /**
+     * Plays the movment animation of the character
+     * 
+     */
+    animateCharacterMovment() {
         setInterval(() => {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
@@ -91,7 +96,13 @@ class Character extends MovableObject {
 
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60)
+    }
 
+    /**
+     * Plays the  animation of the character dying, getting hurt, jumping & moving 
+     * 
+     */
+    animateCharacterIMG() {
         this.id6 = setInterval(() => {
             if (this.isDead()) {
                 this.killCharacter();
@@ -114,6 +125,10 @@ class Character extends MovableObject {
         }, 50)
     }
 
+    /**
+     * Kills character
+     * 
+     */
     killCharacter() {
         this.setFirstDead(this.characterDead)
         this.characterDead = true;
@@ -125,6 +140,10 @@ class Character extends MovableObject {
         this.playAnimation(this.imagesDead);
     }
 
+    /**
+     * Lose game
+     * 
+     */
     loseGame() {
         clearInterval(this.id6);
         this.dying_sound.play();
