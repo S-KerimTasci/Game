@@ -2,7 +2,7 @@ let level1;
 
 /**
  * 
- * This function sets the background, enemies, cloud and objects of the ne level
+ * This function sets the background, enemies, cloud and objects of the new level
  */
 function initLevel() {
     level1 = new Level(

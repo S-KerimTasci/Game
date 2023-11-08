@@ -12,7 +12,6 @@ class World {
     throwableObject = [];
     firstContact = false;
 
-    
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -23,11 +22,20 @@ class World {
         this.run();
     }
 
+
+    /**
+     * Sets the world for the character
+     * 
+     */
     setWorld() {
         this.character.world = this
     }
 
 
+    /**
+     * Draws all needed elements on canvas
+     * 
+     */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
@@ -50,7 +58,7 @@ class World {
         this.addToMap(this.statusbarHealth)
         if (this.endbossOnScreen(this.firstContact)) {
             this.addToMap(this.statusbarHealthEndboss)
-            this.firstContact = true; 
+            this.firstContact = true;
         }
         this.addToMap(this.statusbarCoin)
         this.addToMap(this.statusbarBottle)
@@ -58,33 +66,44 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0)
 
-
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
         })
     }
 
+
+    /**
+     * Adds all elements from an array to the canvas
+     * 
+     */
     addObjectsToMap(object) {
         object.forEach((o) => {
             this.addToMap(o)
         });
     }
 
+
+    /**
+     * Adds an element on the canvas
+     * 
+     */
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo);
         }
-
         mo.draw(this.ctx);
-
         mo.drawFrame(this.ctx);
-
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
     }
 
+
+    /**
+     * Flips an object on the canvas on the y axis
+     * 
+     */
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -92,62 +111,77 @@ class World {
         mo.x = mo.x * -1
     }
 
+
+    /**
+     * Flips an object on the canvas on the y axis back
+     * 
+     */
     flipImageBack(mo) {
         mo.x = mo.x * -1
         this.ctx.restore();
     }
 
+
+    /**
+     * 
+     * Runs all intervalls that are needed for the game
+     */
     run() {
         setInterval(() => {
-            this.checkCollision();
+            this.checkCollisionWithEnemies();
+            this.checkCollisionWithObjects();
             this.checkThrowableObject();
             this.checkCollisionOfBottle();
         }, 200);
     }
 
+
+    /**
+     * Checks the collision of bottles with enemies and ground
+     * 
+     */
     checkCollisionOfBottle() {
         this.level.enemies.forEach((enemy) => {
-
             this.throwableObject.forEach((bottle) => {
                 if (bottle.isColliding(enemy) && !(enemy instanceof Endboss)) {
-                    console.log('Bottle hit an enemy');
-                    this.killEnemy(enemy);
-                    bottle.animateBottleSplash()
+                    this.killSmallEnemyWithBottle(bottle, enemy)
                 }
                 else if (bottle.y > 360) {
-                    console.log('Bottle hit the ground');
                     bottle.animateBottleSplash();
-                } else if (bottle.isColliding(enemy) && enemy instanceof Endboss) {
-                    bottle.animateBottleSplash()
-                    enemy.hit(enemy);
-                    enemy.chicken_sound.play();
-                    this.statusbarHealthEndboss.setPercentage(enemy.energy)
-                    console.log('Bottle hit an Endboss Energy is' + enemy.energy);
+                }
+                else if (bottle.isColliding(enemy) && enemy instanceof Endboss) {
+                    this.hitEndbossWithBottle(bottle, enemy)
                 }
             });
         });
     }
 
-    checkCollision() {
+
+    /**
+     * Checks the collsion of the character with enemies
+     * 
+     */
+    checkCollisionWithEnemies() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 if (this.CharacterIsAboveEnemy(this.character, enemy) && this.isCharacterJumping(this.character)) {
-                    console.log('you hit the enemy')
                     this.killEnemy(enemy);
                 } else {
                     this.character.hit(enemy);
                     this.statusbarHealth.setPercentage(this.character.energy)
-                    console.log('Collision! Pepes energy is', this.character.energy);
                 }
-
             }
         });
+    }
 
 
+    /**
+     * Checks the collsion of the character with objects & removes collected objects from the canvas
+     * 
+     */
+    checkCollisionWithObjects() {
         this.level.object.forEach((obj) => {
             if (this.character.isColliding(obj)) {
-                console.log('Collision! Pepes hits object');
-                // Überprüfe, um welchen Objekttyp es sich handelt und fülle die entsprechende Statusleiste auf
                 if (obj instanceof Coin) {
                     this.collectCoin();
                 } else if (obj instanceof Salsa) {
@@ -159,6 +193,11 @@ class World {
         this.removeCollidedObjects();
     }
 
+
+    /**
+     * Removes collected objects from canvas
+     * 
+     */
     removeCollidedObjects() {
         this.level.object = this.level.object.filter((obj) => {
             if (obj instanceof Coin || obj instanceof Salsa) {
@@ -172,17 +211,30 @@ class World {
         });
     }
 
+
+    /**
+     * Collects coins & updates coin statusbar
+     * 
+     */
     collectCoin() {
         this.statusbarCoin.setPercentage(this.statusbarCoin.percentage + 20);
-        console.log('Coin is' + this.statusbarCoin.percentage)
     }
 
+
+    /**
+     * Collects salsa/bottle & updates salsa/bottle statusbar
+     * 
+     */
     collectSalsa() {
         this.statusbarBottle.setPercentage(this.statusbarBottle.percentage + 20);
         world.character.collectedSalsaBottles++;
-        console.log('Salsa is' + this.statusbarCoin.percentage)
     }
 
+
+    /**
+     * Creates new throwable bottle
+     * 
+     */
     checkThrowableObject() {
         if (this.keyboard.ACTION) {
             let bottle = new ThrowableObject(this.character.x + 80, this.character.y + 50, this)
@@ -190,6 +242,11 @@ class World {
         }
     }
 
+
+    /**
+     * Updates bottle statusbar after collecting or throwing a bottle
+     * 
+     */
     updateBottleStatusbar() {
         const bottlesRemaining = this.character.collectedSalsaBottles;
         const MAX_SALSA_BOTTLES = countSalsaObjects(level1.object);
@@ -197,9 +254,15 @@ class World {
         this.statusbarBottle.setPercentage(percentage);
     }
 
+
+    /**
+     * Checks if the character is above the enemy
+     * 
+     */
     CharacterIsAboveEnemy(character, enemy) {
         return character.y + character.height - character.offset.top > enemy.y
     }
+
 
     /**
      * checks if charakter is jumping
@@ -210,6 +273,11 @@ class World {
         return character.speedY < 0;
     }
 
+
+    /**
+     * Kills Enemy by stopping the movment, animating dead & playing sound
+     *
+     */
     killEnemy(enemy) {
         if (!(enemy instanceof Endboss)) {
             enemy.deadEnemy = true;
@@ -217,16 +285,22 @@ class World {
             clearInterval(enemy.id2);
             enemy.animateDeath();
         } else {
-                clearInterval(enemy.id5);
+            clearInterval(enemy.id5);
         }
 
         enemy.chicken_sound.play();
 
-        // Verwenden Sie setTimeout, um den getroffenen Gegner aus dem Array zu entfernen
+        this.deleteDeadEnemy(enemy)
+    }
+
+
+    /**
+     * Deletes dead enemy from canvas
+     * 
+     */
+    deleteDeadEnemy(enemy) {
         setTimeout(() => {
-            // Überprüfen Sie erneut, ob das Bild des Gegners gültig ist
             if (enemy.imagesDead.length > 0) {
-                // Entfernen Sie den getroffenen Gegner aus dem enemies-Array in level1.js
                 const index = this.level.enemies.indexOf(enemy);
                 if (index > -1) {
                     this.level.enemies.splice(index, 1);
@@ -235,12 +309,38 @@ class World {
         }, 1000);
     }
 
-    endbossOnScreen(firstContact){
+
+    /**
+     * Checks if the x coordinate of the endboss is smaller then 2260. If so its health statusbar ist placed on the canvas
+     * 
+     */
+    endbossOnScreen(firstContact) {
         if (!firstContact) {
-            return this.level.enemies[this.level.enemies.length-1].x < 2260
+            return this.level.enemies[this.level.enemies.length - 1].x < 2260
         } else {
             return true
-        }        
+        }
     }
 
+
+    /**
+     *Hits the endboss with a bottle and hurts it 
+     *
+     */
+    hitEndbossWithBottle(bottle, enemy) {
+        bottle.animateBottleSplash()
+        enemy.hit(enemy);
+        enemy.chicken_sound.play();
+        this.statusbarHealthEndboss.setPercentage(enemy.energy)
+    }
+
+    
+    /**
+     *Hits a small enemy with a bottle and kills it 
+     *
+     */
+    killSmallEnemyWithBottle(bottle, enemy) {
+        this.killEnemy(enemy);
+        bottle.animateBottleSplash()
+    }
 }
