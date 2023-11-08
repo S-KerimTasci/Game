@@ -55,7 +55,6 @@ class Character extends MovableObject {
         right: 25
     }
 
-
     walking_sound = new Audio('audio/walking.mp3')
     hurt_sound = new Audio('audio/hurt.mp3')
     dying_sound = new Audio('audio/dying.mp3')
@@ -98,6 +97,7 @@ class Character extends MovableObject {
         }, 1000 / 60)
     }
 
+
     /**
      * Plays the  animation of the character dying, getting hurt, jumping & moving 
      * 
@@ -125,6 +125,7 @@ class Character extends MovableObject {
         }, 50)
     }
 
+
     /**
      * Kills character
      * 
@@ -140,6 +141,7 @@ class Character extends MovableObject {
         this.playAnimation(this.imagesDead);
     }
 
+    
     /**
      * Lose game
      * 

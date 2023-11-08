@@ -23,6 +23,7 @@ class Salsa extends MovableObject{
         this.animate()
     }
 
+    
     /**
      * Plays the salsa bottle animation
      * 

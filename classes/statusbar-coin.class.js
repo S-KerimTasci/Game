@@ -20,6 +20,7 @@ class StatusbarCoin extends DrawableObject {
         this.setPercentage(0);
     }
 
+    
     /**
      * Displays the right statusbar IMG based on the percentage 
      * 

@@ -6,7 +6,7 @@ class World {
     keyboard;
     camera_x = 0;
     statusbarHealth = new StatusbarHealth(30);
-    statusbarHealthEndboss = new StatusbarHealth(500, true);
+    statusbarHealthEndboss = new StatusbarHealth(500);
     statusbarCoin = new StatusbarCoin();
     statusbarBottle = new StatusbarBottle();
     throwableObject = [];
@@ -238,7 +238,6 @@ class World {
     collectSalsa() {
         world.character.collectedSalsaBottles++;
         this.updateBottleStatusbar()
-
     }
 
 

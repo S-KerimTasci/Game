@@ -20,6 +20,7 @@ class StatusbarBottle extends DrawableObject {
         this.setPercentage(0);
     }
 
+
     /**
      * Displays the right statusbar IMG based on the percentage 
      * 
@@ -30,6 +31,7 @@ class StatusbarBottle extends DrawableObject {
         this.img = this.imageCache[path]
     }
 
+    
     /**
      * Retruns the current percentage 
      * 

@@ -12,6 +12,7 @@ class Keyboard {
         this.keyKeyupEvent();
     }
 
+
     /**
      * Sets the needed eventlisteners for the mobile buttons
      * 
@@ -58,6 +59,7 @@ class Keyboard {
         });
     }
 
+
     /**
      * Sets the needed eventlisteners for the keyboard buttons
      * 
@@ -90,6 +92,7 @@ class Keyboard {
         })
     }
 
+    
     /**
      * Sets the needed eventlisteners for the keyboard buttons
      * 

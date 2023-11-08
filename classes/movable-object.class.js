@@ -44,6 +44,7 @@ class MovableObject extends DrawableObject {
         this.currentImage++
     }
 
+
     /**
      * Moves the Object to the right
      * 
@@ -56,6 +57,7 @@ class MovableObject extends DrawableObject {
         }
     }
 
+
     /**
      * Moves the Object to the right
      * 
@@ -67,6 +69,7 @@ class MovableObject extends DrawableObject {
             this.y = 160;
         }
     }
+
 
     /**
      * Applays gravity to objects in air that need to fall
@@ -81,6 +84,7 @@ class MovableObject extends DrawableObject {
         }, 1000 / 25)
     }
 
+
     /**
      * Checks if an element is above ground
      * 
@@ -93,6 +97,7 @@ class MovableObject extends DrawableObject {
         }
     }
 
+
     /**
      * Makes an element jump
      * 
@@ -101,6 +106,7 @@ class MovableObject extends DrawableObject {
         this.speedY = 25;
         this.jump_sound.play();
     }
+
 
     /**
      *Checks if two objects are collinding 
@@ -112,6 +118,7 @@ class MovableObject extends DrawableObject {
             this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
+
 
     /**
      * Reduces the energy of an eleemnt that got hit
@@ -130,6 +137,7 @@ class MovableObject extends DrawableObject {
         }
     }
 
+   
     /**
      * Sets the energy of small enemies that are one shootable to 0 
      * 
@@ -137,6 +145,7 @@ class MovableObject extends DrawableObject {
     hitEnemy() {
         this.energy = 0
     }
+
 
     /**
      * Checks if an element is getting hurt
@@ -147,6 +156,7 @@ class MovableObject extends DrawableObject {
         return timesPassed < 100;
     }
 
+
     /**
      * Checks if an eleemnt is dead
      * 
@@ -154,6 +164,7 @@ class MovableObject extends DrawableObject {
     isDead() {
         return this.energy == 0;
     }
+
 
     /**
      * Plays the walking animation and moves the element to the left
@@ -172,6 +183,7 @@ class MovableObject extends DrawableObject {
         }
     }
 
+
     /**
      * Plays death animation
      * 
@@ -180,6 +192,7 @@ class MovableObject extends DrawableObject {
         this.playAnimation(this.imagesDead);
     }
 
+    
     /**
      * Checks if an element died for the first time. Is used for elements that have an dead animation with multiple IMG
      * 

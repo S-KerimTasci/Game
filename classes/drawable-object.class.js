@@ -8,7 +8,6 @@ class DrawableObject {
     currentImage = 0;
     
 
-
     /**
      * Loads the first IMG of an object that sould be drwan on the canvas
      *  
@@ -17,6 +16,7 @@ class DrawableObject {
         this.img = new Image();
         this.img.src = path;
     }
+
 
     /**
      * Preloads the IMG in an array that are needed for an animation
@@ -29,6 +29,7 @@ class DrawableObject {
             this.imageCache[path] = img
         });
     }
+
 
     /**
      * Draws the element on the canvas
@@ -44,6 +45,7 @@ class DrawableObject {
         
     }
 
+    
     /**
      * Draws a frame around movable objects that need a collision detection
      * 

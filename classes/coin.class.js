@@ -20,6 +20,7 @@ class Coin extends MovableObject{
         this.animate()
     }
 
+    
     /**
      * Plays the coin animation
      * 
