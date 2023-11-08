@@ -69,13 +69,25 @@ function initLevel() {
 /**
  * Counts the collected bottles and retruns the count. Is used to determan the amount of bottles that the character can throw
  * 
- * @param {*} objects Salsa
- * @returns amount of collecte bottles
  */
 function countSalsaObjects(objects) {
     let count = 0;
     for (const obj of objects) {
         if (obj instanceof Salsa) {
+            count++;
+        }
+    }
+    return count;
+}
+
+/**
+ * Counts the collected coins and retruns the count. Is used to determan the amount of coins that the character can throw
+ * 
+ */
+function countCoinObjects(objects) {
+    let count = 0;
+    for (const obj of objects) {
+        if (obj instanceof Coin) {
             count++;
         }
     }

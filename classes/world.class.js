@@ -14,6 +14,10 @@ class World {
 
     MAX_SALSA_BOTTLES = countSalsaObjects(level1.object);
 
+    coin_sound = new Audio('audio/coin.mp3');
+    MAX_COINS = countCoinObjects(level1.object);
+    collectedCoin = 0;
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -186,6 +190,7 @@ class World {
         this.level.object.forEach((obj) => {
             if (this.character.isColliding(obj)) {
                 if (obj instanceof Coin) {
+                    this.coin_sound.play();
                     this.collectCoin();
                 } else if (obj instanceof Salsa) {
                     this.collectSalsa();
@@ -220,7 +225,9 @@ class World {
      * 
      */
     collectCoin() {
-        this.statusbarCoin.setPercentage(this.statusbarCoin.percentage + 20);
+        this.collectedCoin ++ 
+        const percentage = (this.collectedCoin / this.MAX_COINS) * 100;
+        this.statusbarCoin.setPercentage(percentage);
     }
 
 
