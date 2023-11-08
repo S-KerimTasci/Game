@@ -23,6 +23,10 @@ class Salsa extends MovableObject{
         this.animate()
     }
 
+    /**
+     * Plays the salsa bottle animation
+     * 
+     */
     animate() {
         setInterval(() => {
             this.playAnimation(this.imagesWalking);

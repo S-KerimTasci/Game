@@ -20,12 +20,21 @@ class StatusbarCoin extends DrawableObject {
         this.setPercentage(0);
     }
 
+    /**
+     * Displays the right statusbar IMG based on the percentage 
+     * 
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.Images[this.resolveImageIndex()];
         this.img = this.imageCache[path]
     }
 
+    
+    /**
+     * Retruns the current percentage 
+     * 
+     */
     resolveImageIndex() {
         if (this.percentage >= 100) {
             return 5;

@@ -20,6 +20,10 @@ class Coin extends MovableObject{
         this.animate()
     }
 
+    /**
+     * Plays the coin animation
+     * 
+     */
     animate() {
         setInterval(() => {
             this.playAnimation(this.imagesWalking);

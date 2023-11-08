@@ -72,6 +72,10 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Plays the animation for the different situation the endboss can be in & moves the endboss to the left
+     * 
+     */
     animate() {
         let i = 0;
         this.id5 = setInterval(() => {
@@ -99,11 +103,19 @@ class Endboss extends MovableObject {
         }, 100);
     }
 
+    /**
+     * Places the Endboss on the canvas for the first contact with the character 
+     * 
+     */
     placeEndbossforFirstContact() {
         this.x = 2250;
         this.hadFirstContact = true;
     }
 
+    /**
+     * Kills the endboss
+     * 
+     */
     killEndboss() {
         this.setFirstDead(this.firstDead)
         this.firstDead = true;
@@ -115,12 +127,20 @@ class Endboss extends MovableObject {
         this.playAnimation(this.imagesDead);
     }
 
+    /**
+     * Plays the endboss attack animation
+     * 
+     */
     endbossAttacks() {
         this.playAnimation(this.imagesAttack);
         this.moveLeft();
         this.chicken_sound.play();
     }
 
+    /**
+     * Win game 
+     * 
+     */
     winGame() {
         world.killEnemy(this);
         endGame();

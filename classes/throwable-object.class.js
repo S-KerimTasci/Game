@@ -30,7 +30,11 @@ class ThrowableObject extends MovableObject {
         this.loadImages(this.imagesSplash)
     }
 
-    
+
+    /**
+     *Sets everthing needed for a bottle throw 
+     *
+     */
     throw() {
         if (this.world.character.collectedSalsaBottles > 0) {
             this.world.character.collectedSalsaBottles--;
@@ -43,6 +47,11 @@ class ThrowableObject extends MovableObject {
         }
     }
 
+
+    /**
+     * Animates the bottle throw animation
+     * 
+     */
     animateBottleThrow(){
         this.id3 = setInterval(() => {
             this.playAnimation(this.imagesFlying)
@@ -52,17 +61,20 @@ class ThrowableObject extends MovableObject {
         }, 1000 / 50);
     }
 
+
+    /**
+     * Animates the bottle splash animation
+     * 
+     */
     animateBottleSplash(){
         clearInterval(this.id3)
         clearInterval(this.id4)
         this.playAnimation(this.imagesSplash)
-        this-this.glas_shatter_sound.play();
+        this.glas_shatter_sound.play();
 
         setTimeout(() => {
-            // Überprüfen Sie erneut, ob sich die Flasche noch im throwableObject-Array befindet
             const index = this.world.throwableObject.indexOf(this);
             if (index > -1) {
-                // Wenn die Flasche noch im Array ist, entfernen Sie sie
                 this.world.throwableObject.splice(index, 1);
             }
         }, 1000);

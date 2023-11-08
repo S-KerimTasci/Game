@@ -5,6 +5,8 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     accelaration = 1.5;
 
+    deadEnemy = false;
+
     chicken_sound = new Audio('audio/chicken.mp3')
     jump_sound = new Audio('audio/jump.mp3')
 
@@ -30,8 +32,11 @@ class MovableObject extends DrawableObject {
         right: 0
     }
 
-    deadEnemy = false;
-
+    
+    /**
+     * Plays the animation of a moveable object
+     * 
+     */
     playAnimation(img) {
         let i = this.currentImage % img.length;
         let path = img[i];
@@ -39,6 +44,10 @@ class MovableObject extends DrawableObject {
         this.currentImage++
     }
 
+    /**
+     * Moves the Object to the right
+     * 
+     */
     moveRight() {
         this.x += this.speed;
         if (this.y > 160) {
@@ -47,6 +56,10 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     * Moves the Object to the right
+     * 
+     */
     moveLeft() {
         this.x -= this.speed;
         if (this instanceof Character && this.y > 160) {
@@ -55,6 +68,10 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     * Applays gravity to objects in air that need to fall
+     * 
+     */
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -64,6 +81,10 @@ class MovableObject extends DrawableObject {
         }, 1000 / 25)
     }
 
+    /**
+     * Checks if an element is above ground
+     * 
+     */
     isAboveGround() {
         if (this instanceof ThrowableObject) {
             return this.y < 360;
@@ -72,11 +93,19 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     * Makes an element jump
+     * 
+     */
     jump() {
         this.speedY = 25;
         this.jump_sound.play();
     }
 
+    /**
+     *Checks if two objects are collinding 
+     *
+     */
     isColliding(mo) {
         return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
@@ -84,6 +113,10 @@ class MovableObject extends DrawableObject {
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
 
+    /**
+     * Reduces the energy of an eleemnt that got hit
+     * 
+     */
     hit(enemy) {
         if (this instanceof Endboss) {
             this.energy -= 10;
@@ -97,19 +130,35 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     * Sets the energy of small enemies that are one shootable to 0 
+     * 
+     */
     hitEnemy() {
         this.energy = 0
     }
 
+    /**
+     * Checks if an element is getting hurt
+     * 
+     */
     isHurt() {
         let timesPassed = new Date().getTime() - this.lastHit;
         return timesPassed < 100;
     }
 
+    /**
+     * Checks if an eleemnt is dead
+     * 
+     */
     isDead() {
         return this.energy == 0;
     }
 
+    /**
+     * Plays the walking animation and moves the element to the left
+     * 
+     */
     animateWalk() {
         if (!this.deadEnemy) {
             this.id1 = setInterval(() => {
@@ -121,13 +170,20 @@ class MovableObject extends DrawableObject {
         } else {
             this.playAnimation(this.imagesDead);
         }
-
     }
 
+    /**
+     * Plays death animation
+     * 
+     */
     animateDeath() {
         this.playAnimation(this.imagesDead);
     }
 
+    /**
+     * Checks if an element died for the first time. Is used for elements that have an dead animation with multiple IMG
+     * 
+     */
     setFirstDead(firstDead) {
         if (!firstDead) {
             return this.currentImage = 0;

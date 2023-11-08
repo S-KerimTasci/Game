@@ -12,6 +12,10 @@ class Keyboard {
         this.keyKeyupEvent();
     }
 
+    /**
+     * Sets the needed eventlisteners for the mobile buttons
+     * 
+     */
     btnPressEvent() {
         document.getElementById('btnLeft').addEventListener('touchstart', (e) => {
             e.preventDefault();
@@ -54,6 +58,10 @@ class Keyboard {
         });
     }
 
+    /**
+     * Sets the needed eventlisteners for the keyboard buttons
+     * 
+     */
     keyPressEvent() {
         window.addEventListener("keydown", (e) => {
             if (e.keyCode == 39) {
@@ -82,6 +90,10 @@ class Keyboard {
         })
     }
 
+    /**
+     * Sets the needed eventlisteners for the keyboard buttons
+     * 
+     */
     keyKeyupEvent() {
         window.addEventListener("keyup", (e) => {
             this.RIGHT = false;
