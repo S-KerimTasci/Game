@@ -50,7 +50,10 @@ class Keyboard {
 
         document.getElementById('btnThrow').addEventListener('touchstart', (e) => {
             e.preventDefault();
-            this.ACTION = true;
+            if (world.character.collectedSalsaBottles > 0) {
+                this.ACTION = true;
+            }
+            
         });
 
         document.getElementById('btnThrow').addEventListener('touchend', (e) => {
