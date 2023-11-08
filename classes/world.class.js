@@ -12,6 +12,8 @@ class World {
     throwableObject = [];
     firstContact = false;
 
+    MAX_SALSA_BOTTLES = countSalsaObjects(level1.object);
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -132,6 +134,7 @@ class World {
             this.checkCollisionWithObjects();
             this.checkThrowableObject();
             this.checkCollisionOfBottle();
+            this.checkGameStatus();
         }, 200);
     }
 
@@ -226,8 +229,9 @@ class World {
      * 
      */
     collectSalsa() {
-        this.statusbarBottle.setPercentage(this.statusbarBottle.percentage + 20);
         world.character.collectedSalsaBottles++;
+        this.updateBottleStatusbar()
+
     }
 
 
@@ -238,7 +242,7 @@ class World {
     checkThrowableObject() {
         if (this.keyboard.ACTION) {
             let bottle = new ThrowableObject(this.character.x + 80, this.character.y + 50, this)
-            this.throwableObject.push(bottle)
+            this.throwableObject.push(bottle);
         }
     }
 
@@ -249,8 +253,7 @@ class World {
      */
     updateBottleStatusbar() {
         const bottlesRemaining = this.character.collectedSalsaBottles;
-        const MAX_SALSA_BOTTLES = countSalsaObjects(level1.object);
-        const percentage = (bottlesRemaining / MAX_SALSA_BOTTLES) * 100;
+        const percentage = (bottlesRemaining / this.MAX_SALSA_BOTTLES) * 100;
         this.statusbarBottle.setPercentage(percentage);
     }
 
@@ -334,7 +337,7 @@ class World {
         this.statusbarHealthEndboss.setPercentage(enemy.energy)
     }
 
-    
+
     /**
      *Hits a small enemy with a bottle and kills it 
      *
@@ -342,5 +345,15 @@ class World {
     killSmallEnemyWithBottle(bottle, enemy) {
         this.killEnemy(enemy);
         bottle.animateBottleSplash()
+    }
+
+    checkGameStatus() {
+        const salsaRemaining = countSalsaObjects(this.level.object);
+        const bottlesRemaining = this.character.collectedSalsaBottles;
+        const endboss = this.level.enemies[this.level.enemies.length - 1];
+
+        if (salsaRemaining === 0 && bottlesRemaining === 0 && !endboss.isDead()) {
+            this.character.loseGame();
+        }
     }
 }

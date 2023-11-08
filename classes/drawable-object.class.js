@@ -23,7 +23,14 @@ class DrawableObject {
     }
 
     draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+        try {
+            ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+        } catch (e) {
+            
+            console.log(this.img);
+            console.warn(e);            
+        }
+        
     }
 
     drawFrame(ctx) {
