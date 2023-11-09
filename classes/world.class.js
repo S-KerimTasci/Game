@@ -11,6 +11,7 @@ class World {
     statusbarBottle = new StatusbarBottle();
     throwableObject = [];
     firstContact = false;
+    bottlesEmpty = false;
 
     MAX_SALSA_BOTTLES = countSalsaObjects(level1.object);
 
@@ -360,6 +361,7 @@ class World {
         const endboss = this.level.enemies[this.level.enemies.length - 1];
 
         if (salsaRemaining === 0 && bottlesRemaining === 0 && !endboss.isDead()) {
+            this.bottlesEmpty = true;
             setTimeout(() => {
                 this.character.loseGame();
             }, 2000);

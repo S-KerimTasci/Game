@@ -14,6 +14,7 @@ let fullscreenIMG = document.getElementById('fullscreenIMG');
 let speakerIMG = document.getElementById('speakerIMG');
 let permanentBTNdiv = document.getElementById('permanentBTNdiv');
 let hud = document.getElementById('hud');
+let runOutOfBottlesDiv = document.getElementById('runOutOfBottlesDiv')
 
 let game_sound = new Audio('audio/backgroundmusic.ogg')
 
@@ -34,6 +35,7 @@ function startGame() {
     endscreen.classList.add('d-none');
     permanentBTNdiv.classList.remove('permanentBTNdiv');
     permanentBTNdiv.classList.add('permanentBTNdivInGame')
+    runOutOfBottlesDiv.classList.add('d-none')
     hud.classList.remove('d-none');
     init();
     if (soundOn) {
@@ -41,13 +43,16 @@ function startGame() {
     }
 }
 
-function endGame() {
+function endGame(x) {
     clearAllIntervals()
     game_sound.pause();
     endscreen.classList.remove('d-none');
     permanentBTNdiv.classList.add('permanentBTNdiv');
     permanentBTNdiv.classList.remove('permanentBTNdivInGame')
     hud.classList.add('d-none');
+    if (x == true) {
+        runOutOfBottlesDiv.classList.remove('d-none')
+    }
 }
 
 function goBackToStartscreen() {

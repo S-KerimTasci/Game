@@ -37,7 +37,7 @@
         <div class="startscreen" id="startscreen">
             <div class="startBTN">
                 <button onclick="startGame()">Start Game</button>
-                <button onclick="toggleInfoscreen('remove')">  Controls</button>
+                <button onclick="toggleInfoscreen('remove')"> Controls</button>
             </div>
             <img src="img/9_intro_outro_screens/start/startscreen_1.png" class="intro_outro_img" id="startIMG">
         </div>
@@ -45,6 +45,9 @@
         <canvas id="canvas" width="720" height="480"></canvas>
 
         <div class="endscreen d-none" id="endscreen">
+            <div class="runOutOfBottlesDiv d-none" id="runOutOfBottlesDiv">
+                <p>You run out of bottles before killing the endboss</p>
+            </div>
             <div class="startBTN">
                 <button onclick="startGame()">Play Again</button>
                 <button onclick="goBackToStartscreen()">Menu</button>
@@ -54,7 +57,7 @@
 
         <div class="infoscreen d-none" id="infoscreen">
             <button onclick="toggleInfoscreen('add')" class="permanentBTN closeInfoBTN"> <img class="permanentBTNimg"
-                src="img/xmark-solid.svg" id="closeInfoscreenIMG"></button>
+                    src="img/xmark-solid.svg" id="closeInfoscreenIMG"></button>
             <div>
                 <p class="infoscreen_text">
                     Our hero Pepe Peligroso armed with salsa bottles fights against chickens in the desert. Help Pepe by
@@ -64,24 +67,24 @@
             </div>
 
             <div class="infoscreen_element_div">
-            <div class="infoscreen_element">
-                <span>MOVE</span>
-                <div>
-                    <img class="controlIMG" src="img/arrow-left-solid.svg">
-                    <img class="controlIMG" src="img/arrow-right-solid.svg">
+                <div class="infoscreen_element">
+                    <span>MOVE</span>
+                    <div>
+                        <img class="controlIMG" src="img/arrow-left-solid.svg">
+                        <img class="controlIMG" src="img/arrow-right-solid.svg">
+                    </div>
+                </div>
+
+                <div class="infoscreen_element">
+                    <span>JUMP</span>
+                    <img class="controlIMG" src="img/arrow-up-solid.svg">
+                </div>
+
+                <div class="infoscreen_element">
+                    <span>THROW BOTTLE</span>
+                    <img class="controlIMG" src="img/e-solid.svg">
                 </div>
             </div>
-
-            <div class="infoscreen_element">
-                <span>JUMP</span>
-                <img class="controlIMG" src="img/arrow-up-solid.svg">
-            </div>
-
-            <div class="infoscreen_element">
-                <span>THROW BOTTLE</span>
-                <img class="controlIMG" src="img/e-solid.svg">
-            </div>
-        </div>
 
         </div>
 
