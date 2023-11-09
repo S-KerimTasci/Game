@@ -7,8 +7,8 @@ class MovableObject extends DrawableObject {
 
     deadEnemy = false;
 
-    chicken_sound = new Audio('audio/chicken.mp3')
-    jump_sound = new Audio('audio/jump.mp3')
+    chicken_sound = new Audio('audio/chicken.mp3');
+    jump_sound = new Audio('audio/jump.mp3');
 
     // ID to stop the animate enemy intervall
     id1;

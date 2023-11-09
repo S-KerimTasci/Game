@@ -40,13 +40,26 @@ class Character extends MovableObject {
         'img/2_character_pepe/4_hurt/H-43.png',
     ]
 
+    imagesIdle = [
+        'img/2_character_pepe/1_idle/idle/I-1.png',
+        'img/2_character_pepe/1_idle/idle/I-2.png',
+        'img/2_character_pepe/1_idle/idle/I-3.png',
+        'img/2_character_pepe/1_idle/idle/I-4.png',
+        'img/2_character_pepe/1_idle/idle/I-5.png',
+        'img/2_character_pepe/1_idle/idle/I-6.png',
+        'img/2_character_pepe/1_idle/idle/I-7.png',
+        'img/2_character_pepe/1_idle/idle/I-8.png',
+        'img/2_character_pepe/1_idle/idle/I-9.png',
+        'img/2_character_pepe/1_idle/idle/I-10.png',
+    ]
+
 
     world;
     speed = 5;
     speedY = 0;
     characterDead = false;
 
-    collectedSalsaBottles = 0
+    collectedSalsaBottles = 0;
 
     offset = {
         top: 100,
@@ -55,19 +68,20 @@ class Character extends MovableObject {
         right: 10
     }
 
-    walking_sound = new Audio('audio/walking.mp3')
-    hurt_sound = new Audio('audio/hurt.mp3')
-    dying_sound = new Audio('audio/dying.mp3')
-    game_lost_sound = new Audio('audio/game_lost.mp3')
+    walking_sound = new Audio('audio/walking.mp3');
+    hurt_sound = new Audio('audio/hurt.mp3');
+    dying_sound = new Audio('audio/dying.mp3');
+    game_lost_sound = new Audio('audio/game_lost.mp3');
 
 
     constructor() {
         super().loadIMG('img/2_character_pepe/2_walk/W-21.png')
-        this.loadImages(this.imagesWalking)
-        this.loadImages(this.imagesJumping)
-        this.loadImages(this.imagesDead)
-        this.loadImages(this.imagesHurt)
-        this.applyGravity()
+        this.loadImages(this.imagesWalking);
+        this.loadImages(this.imagesJumping);
+        this.loadImages(this.imagesDead);
+        this.loadImages(this.imagesHurt);
+        this.loadImages(this.imagesIdle);
+        this.applyGravity();
         this.animateCharacterMovment();
         this.animateCharacterIMG();
     }
@@ -104,6 +118,7 @@ class Character extends MovableObject {
      */
     animateCharacterIMG() {
         this.id6 = setInterval(() => {
+            this.walking_sound.pause();
             if (this.isDead()) {
                 this.killCharacter();
                 if (this.currentImage == this.imagesDead.length) {
@@ -115,12 +130,11 @@ class Character extends MovableObject {
             }
             else if (this.isAboveGround()) {
                 this.playAnimation(this.imagesJumping)
-            } else {
-                this.walking_sound.pause();
-                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    this.playAnimation(this.imagesWalking)
-                    this.walking_sound.play();
-                }
+            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                this.playAnimation(this.imagesWalking)
+                this.walking_sound.play();
+            }else {
+                this.playAnimation(this.imagesIdle)
             }
         }, 50)
     }
@@ -141,13 +155,13 @@ class Character extends MovableObject {
         this.playAnimation(this.imagesDead);
     }
 
-    
+
     /**
      * Lose game
      * 
      */
     loseGame() {
-        
+
         clearInterval(this.id6);
         this.dying_sound.play();
         endGame(this.world.bottlesEmpty);
