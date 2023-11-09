@@ -41,18 +41,19 @@ function initLevel() {
             new SmallChicken(),
             new SmallChicken(),
             new SmallChicken(),
+            new SmallChicken(),
             new Endboss()
         ],
 
         new Cloud(),
 
         [
-            new Coin(),
-            new Coin(),
-            new Coin(),
-            new Coin(),
-            new Coin(),
-            new Coin(),
+            // new Coin(),
+            // new Coin(),
+            // new Coin(),
+            // new Coin(),
+            // new Coin(),
+            // new Coin(),
             new Salsa(),
             new Salsa(),
             new Salsa(),
