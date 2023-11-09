@@ -99,6 +99,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
+        mo.drawFrame(this.ctx);
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
@@ -246,6 +247,7 @@ class World {
      */
     checkThrowableObject() {
         if (this.keyboard.ACTION) {
+            //this.keyboard.ACTION = false
             let bottle = new ThrowableObject(this.character.x + 80, this.character.y + 50, this)
             this.throwableObject.push(bottle);
         }
@@ -360,8 +362,7 @@ class World {
         if (salsaRemaining === 0 && bottlesRemaining === 0 && !endboss.isDead()) {
             setTimeout(() => {
                 this.character.loseGame();
-            }, 3000);
-
+            }, 2000);
         }
     }
 }

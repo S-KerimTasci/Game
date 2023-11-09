@@ -53,7 +53,6 @@ class Keyboard {
             if (world.character.collectedSalsaBottles > 0) {
                 this.ACTION = true;
             }
-            
         });
 
         document.getElementById('btnThrow').addEventListener('touchend', (e) => {
