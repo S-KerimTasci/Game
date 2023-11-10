@@ -137,7 +137,6 @@ class World {
         setInterval(() => {
             this.checkCollisionWithEnemies();
             this.checkCollisionWithObjects();
-            this.checkThrowableObject();
             this.checkCollisionOfBottle();
             this.checkGameStatus();
         }, 200);
@@ -211,11 +210,9 @@ class World {
         this.level.object = this.level.object.filter((obj) => {
             if (obj instanceof Coin || obj instanceof Salsa) {
                 if (this.character.isColliding(obj)) {
-                    // Kollision mit Coin oder Salsa, nicht hinzufügen
                     return false;
                 }
             }
-            // Keine Kollision oder nicht Coin/Salsa, hinzufügen
             return true;
         });
     }
@@ -246,12 +243,9 @@ class World {
      * Creates new throwable bottle
      * 
      */
-    checkThrowableObject() {
-        if (this.keyboard.ACTION) {
-            //this.keyboard.ACTION = false
-            let bottle = new ThrowableObject(this.character.x + 80, this.character.y + 50, this)
-            this.throwableObject.push(bottle);
-        }
+        createThrowableObject() {
+        let bottle = new ThrowableObject(this.character.x + 80, this.character.y + 50, this)
+        this.throwableObject.push(bottle);
     }
 
 
@@ -272,14 +266,12 @@ class World {
      */
     CharacterIsAboveEnemy(character, enemy) {
         return character.y + character.height - character.offset.bottom > enemy.y + enemy.offset.top
-        //return character.y + character.height - character.offset.top > enemy.y + enemy.offset.top
     }
 
 
     /**
-     * checks if charakter is jumping
-     * @param {*} character 
-     * @returns 
+     * Checks if charakter is jumping
+     * 
      */
     isCharacterJumping(character) {
         return character.speedY < 0;

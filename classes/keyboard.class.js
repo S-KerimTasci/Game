@@ -50,8 +50,9 @@ class Keyboard {
 
         document.getElementById('btnThrow').addEventListener('touchstart', (e) => {
             e.preventDefault();
-            if (world.character.collectedSalsaBottles > 0) {
+            if (world.character.collectedSalsaBottles > 0 && !this.ACTION) {
                 this.ACTION = true;
+                world.createThrowableObject();
             }
         });
 
@@ -88,26 +89,27 @@ class Keyboard {
                 this.SPACE = true;
             }
 
-            if (e.keyCode == 69 && world.character.collectedSalsaBottles > 0) {
+            if (e.keyCode == 69 && world.character.collectedSalsaBottles > 0 && !this.ACTION) {
                 this.ACTION = true;
+                world.createThrowableObject();
             }
-        })
-    }
+    })
+}
 
-    
-    /**
-     * Sets the needed eventlisteners for the keyboard buttons
-     * 
-     */
-    keyKeyupEvent() {
-        window.addEventListener("keyup", (e) => {
-            this.RIGHT = false;
-            this.LEFT = false;
-            this.UP = false;
-            this.DOWN = false;
-            this.SPACE = false;
-            this.ACTION = false;
-        })
-    }
+
+/**
+ * Sets the needed eventlisteners for the keyboard buttons
+ * 
+ */
+keyKeyupEvent() {
+    window.addEventListener("keyup", (e) => {
+        this.RIGHT = false;
+        this.LEFT = false;
+        this.UP = false;
+        this.DOWN = false;
+        this.SPACE = false;
+        this.ACTION = false;
+    })
+}
 }
 
