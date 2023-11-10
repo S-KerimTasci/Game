@@ -48,12 +48,12 @@ function initLevel() {
         new Cloud(),
 
         [
-            // new Coin(),
-            // new Coin(),
-            // new Coin(),
-            // new Coin(),
-            // new Coin(),
-            // new Coin(),
+            new Coin(),
+            new Coin(),
+            new Coin(),
+            new Coin(),
+            new Coin(),
+            new Coin(),
             new Salsa(),
             new Salsa(),
             new Salsa(),

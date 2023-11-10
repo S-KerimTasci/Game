@@ -172,7 +172,7 @@ class World {
     checkCollisionWithEnemies() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                if (this.CharacterIsAboveEnemy(this.character, enemy) && this.isCharacterJumping(this.character)) {
+                if (this.CharacterIsAboveEnemy(this.character, enemy) && this.isCharacterJumping(this.character) && !(enemy instanceof Endboss)) {
                     this.killEnemy(enemy);
                 } else {
                     this.character.hit(enemy);
@@ -267,11 +267,12 @@ class World {
 
 
     /**
-     * Checks if the character is above the enemy
+     * Checks if the character is above the enemy. The enemy.offset.top needes to be added not substacted from enemy.y because it's negative.
      * 
      */
     CharacterIsAboveEnemy(character, enemy) {
-        return character.y + character.height - character.offset.top > enemy.y
+        return character.y + character.height - character.offset.bottom > enemy.y + enemy.offset.top
+        //return character.y + character.height - character.offset.top > enemy.y + enemy.offset.top
     }
 
 
