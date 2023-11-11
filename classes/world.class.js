@@ -28,6 +28,9 @@ class World {
         this.setWorld();
         this.run();
         pushAudioIntoArray(this.coin_sound);
+        if (!soundOn) {
+            muteAll();
+        }
     }
 
 

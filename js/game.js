@@ -2,8 +2,9 @@ let world;
 let keyboard = new Keyboard();
 let fullscreenOpend = false;
 
-let soundOn = true;
+let soundOn = false;
 let soundCheckedAfterInit = false;
+let gameRestarted = false;
 let audio = [];
 
 let canvas = document.getElementById('canvas');
@@ -47,6 +48,14 @@ function startGame() {
     }
 }
 
+function restartGame() {
+    gameRestarted = true;
+    startGame();
+    // if (soundOn) {
+    //     game_sound.play();
+    // }
+}
+
 function endGame(x) {
     clearAllIntervals()
     game_sound.pause();
@@ -68,8 +77,11 @@ function goBackToStartscreen() {
 
 function init() {
     initLevel();
-    world = new World(canvas, keyboard)
-    toggleSound();
+    world = new World(canvas, keyboard);
+    if (!gameRestarted) {
+        toggleSound();
+    }
+
 }
 
 
@@ -136,11 +148,13 @@ function toggleSound() {
     }
     else if (!soundOn) {
         speakerIMG.src = "img/speaker.png"
-        soundOn = true;
-        if (world) {
+
+        if (!soundCheckedAfterInit) {
+            soundCheckedAfterInit = true;
+        } else {
+            soundOn = true;
             unmuteAll();
             game_sound.play();
-
         }
     } else {
         speakerIMG.src = "img/speaker_x.png"
