@@ -31,7 +31,7 @@ class Salsa extends MovableObject{
     animate() {
         setInterval(() => {
             this.playAnimation(this.imagesWalking);
-        }, 150)
+        }, 250)
     }
 
 }
