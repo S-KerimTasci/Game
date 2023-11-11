@@ -32,6 +32,12 @@ class MovableObject extends DrawableObject {
         right: 0
     }
 
+    constructor() {
+        super();
+        pushAudioIntoArray(this.chicken_sound);
+        pushAudioIntoArray(this.jump_sound);
+    }
+
     
     /**
      * Plays the animation of a moveable object

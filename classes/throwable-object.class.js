@@ -28,6 +28,18 @@ class ThrowableObject extends MovableObject {
 
         this.loadImages(this.imagesFlying)
         this.loadImages(this.imagesSplash)
+
+        this.checkSound();
+    }
+
+    checkSound(){
+        setInterval(() => {
+            if (!soundOn) {
+                this.glas_shatter_sound.muted = true;
+            } else {
+                this.glas_shatter_sound.muted = false;
+            }
+        }, 50);
     }
 
 

@@ -3,6 +3,8 @@ let keyboard = new Keyboard();
 let fullscreenOpend = false;
 let soundOn = true;
 
+let audio =[];
+
 let canvas = document.getElementById('canvas');
 let fullscreen = document.getElementById('fullscreen');
 let startscreen = document.getElementById('startscreen');
@@ -17,6 +19,7 @@ let hud = document.getElementById('hud');
 let runOutOfBottlesDiv = document.getElementById('runOutOfBottlesDiv')
 
 let game_sound = new Audio('audio/backgroundmusic.ogg')
+pushAudioIntoArray(game_sound)
 
 document.addEventListener('fullscreenchange', () => {
     if (document.fullscreenElement === null) {
@@ -63,8 +66,8 @@ function goBackToStartscreen() {
 
 
 function init() {
-        initLevel();
-        world = new World(canvas, keyboard)
+    initLevel();
+    world = new World(canvas, keyboard)
 
 }
 
@@ -85,19 +88,6 @@ function toggleFullscreen() {
     }
 }
 
-function toggleSound(){
-    if (!soundOn) {
-        speakerIMG.src = "img/speaker.png"
-        soundOn = true;
-        if (world) {
-            game_sound.play()
-        }
-    } else {
-        speakerIMG.src = "img/speaker_x.png"
-        soundOn =false;
-        game_sound.pause();
-    }
-}
 
 function setFullscreenCSS(x) {
     startscreen.classList[x]('enterFullscreen');
@@ -109,20 +99,19 @@ function setFullscreenCSS(x) {
     if (x == 'add') {
         fullscreenIMG.src = "img/exit_fullscreen.png"
     } else {
-        fullscreenIMG.src = "img/fullscreen.png" 
+        fullscreenIMG.src = "img/fullscreen.png"
     }
 }
 
 
 function enterFullscreen(element) {
-        if (element.requestFullscreen) {
-            element.requestFullscreen();
-        } else if (element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
-            element.msRequestFullscreen();
-        } else if (element.webkitRequestFullscreen) {  // iOS Safari
-            element.webkitRequestFullscreen();
-        }
-
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
+        element.msRequestFullscreen();
+    } else if (element.webkitRequestFullscreen) {  // iOS Safari
+        element.webkitRequestFullscreen();
+    }
 }
 
 function exitFullscreen() {
@@ -133,12 +122,44 @@ function exitFullscreen() {
     }
 }
 
-function toggleInfoscreen(x){
+function toggleInfoscreen(x) {
     infoscreen.classList[x]('d-none');
 }
 
 
+function toggleSound() {
+    if (!soundOn) {
+        speakerIMG.src = "img/speaker.png"
+        soundOn = true;
+        if (world) {
+            unmuteAll();
+            game_sound.play()
+        }
+    } else {
+        speakerIMG.src = "img/speaker_x.png"
+        soundOn = false;
+        game_sound.pause();
+        muteAll();
+        
+    }
+}
 
+function pushAudioIntoArray(x){
+    audio.push(x)
+}
+
+
+function muteAll() {
+    audio.forEach(function(audio) {
+        audio.muted = true;
+    });
+}
+
+function unmuteAll() {
+    audio.forEach(function(audio) {
+        audio.muted = false;
+    });
+}
 
 
 

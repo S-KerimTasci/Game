@@ -68,6 +68,7 @@ class Character extends MovableObject {
         right: 35
     }
 
+
     walking_sound = new Audio('audio/walking.mp3');
     hurt_sound = new Audio('audio/hurt.mp3');
     dying_sound = new Audio('audio/dying.mp3');
@@ -84,6 +85,11 @@ class Character extends MovableObject {
         this.applyGravity();
         this.animateCharacterMovment();
         this.animateCharacterIMG();
+        pushAudioIntoArray(this.walking_sound);
+        pushAudioIntoArray(this.hurt_sound);
+        pushAudioIntoArray(this.dying_sound);
+        pushAudioIntoArray(this.game_lost_sound);
+
     }
 
 
@@ -133,7 +139,7 @@ class Character extends MovableObject {
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                 this.playAnimation(this.imagesWalking)
                 this.walking_sound.play();
-            }else {
+            } else {
                 this.playAnimation(this.imagesIdle)
             }
         }, 50)

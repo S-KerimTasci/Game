@@ -27,6 +27,7 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        pushAudioIntoArray(this.coin_sound);
     }
 
 
