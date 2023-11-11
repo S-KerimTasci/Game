@@ -91,6 +91,7 @@ function endGame(x) {
  * 
  */
 function goBackToStartscreen() {
+    document.getElementById('startBTN').innerHTML = '<button onclick="restartGame()">Start Game</button> <button onclick="toggleInfoscreen(\'remove\')"> Controls</button>'
     endscreen.classList.add('d-none');
     startscreen.classList.remove('d-none');
 }
