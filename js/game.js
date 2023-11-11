@@ -13,15 +13,16 @@ let startscreen = document.getElementById('startscreen');
 let endscreen = document.getElementById('endscreen');
 let infoscreen = document.getElementById('infoscreen');
 let startIMG = document.getElementById('startIMG');
+let startBTN = document.getElementById('startBTN');
 let endIMG = document.getElementById('endIMG');
 let fullscreenIMG = document.getElementById('fullscreenIMG');
 let speakerIMG = document.getElementById('speakerIMG');
 let permanentBTNdiv = document.getElementById('permanentBTNdiv');
 let hud = document.getElementById('hud');
-let runOutOfBottlesDiv = document.getElementById('runOutOfBottlesDiv')
+let runOutOfBottlesDiv = document.getElementById('runOutOfBottlesDiv');
 
-let game_sound = new Audio('audio/backgroundmusic.ogg')
-pushAudioIntoArray(game_sound)
+let game_sound = new Audio('audio/backgroundmusic.ogg');
+pushAudioIntoArray(game_sound);
 
 
 /**
@@ -91,7 +92,7 @@ function endGame(x) {
  * 
  */
 function goBackToStartscreen() {
-    document.getElementById('startBTN').innerHTML = '<button onclick="restartGame()">Start Game</button> <button onclick="toggleInfoscreen(\'remove\')"> Controls</button>'
+    startBTN.innerHTML = '<button onclick="restartGame()">Start Game</button> <button onclick="toggleInfoscreen(\'remove\')"> Controls</button>'
     endscreen.classList.add('d-none');
     startscreen.classList.remove('d-none');
 }
