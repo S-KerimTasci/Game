@@ -51,8 +51,6 @@ class World {
 
         this.addObjectsToMap(this.level.backgoundobjects)
 
-        this.addToMap(this.character)
-
         this.addToMap(this.level.cloud)
 
         this.addObjectsToMap(this.level.enemies)
@@ -60,6 +58,8 @@ class World {
         this.addObjectsToMap(this.level.object)
 
         this.addObjectsToMap(this.throwableObject)
+
+        this.addToMap(this.character)
 
         this.ctx.translate(-this.camera_x, 0)
         //--------Space for fixed objects---------
