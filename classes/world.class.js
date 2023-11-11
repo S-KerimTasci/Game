@@ -104,6 +104,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
+        mo.drawFrame(this.ctx)
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
@@ -138,11 +139,14 @@ class World {
      */
     run() {
         setInterval(() => {
-            this.checkCollisionWithEnemies();
             this.checkCollisionWithObjects();
             this.checkCollisionOfBottle();
             this.checkGameStatus();
         }, 200);
+
+        setInterval(() => {
+            this.checkCollisionWithEnemies();
+        }, 50);
     }
 
 
