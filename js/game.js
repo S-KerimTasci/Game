@@ -1,9 +1,10 @@
 let world;
 let keyboard = new Keyboard();
 let fullscreenOpend = false;
-let soundOn = true;
 
-let audio =[];
+let soundOn = true;
+let soundCheckedAfterInit = false;
+let audio = [];
 
 let canvas = document.getElementById('canvas');
 let fullscreen = document.getElementById('fullscreen');
@@ -68,7 +69,7 @@ function goBackToStartscreen() {
 function init() {
     initLevel();
     world = new World(canvas, keyboard)
-
+    toggleSound();
 }
 
 
@@ -128,35 +129,40 @@ function toggleInfoscreen(x) {
 
 
 function toggleSound() {
-    if (!soundOn) {
+    if (world && !soundOn && !soundCheckedAfterInit) {
+        game_sound.pause();
+        muteAll();
+        soundCheckedAfterInit = true;
+    }
+    else if (!soundOn) {
         speakerIMG.src = "img/speaker.png"
         soundOn = true;
         if (world) {
             unmuteAll();
-            game_sound.play()
+            game_sound.play();
+
         }
     } else {
         speakerIMG.src = "img/speaker_x.png"
         soundOn = false;
         game_sound.pause();
         muteAll();
-        
     }
 }
 
-function pushAudioIntoArray(x){
+function pushAudioIntoArray(x) {
     audio.push(x)
 }
 
 
 function muteAll() {
-    audio.forEach(function(audio) {
+    audio.forEach(function (audio) {
         audio.muted = true;
     });
 }
 
 function unmuteAll() {
-    audio.forEach(function(audio) {
+    audio.forEach(function (audio) {
         audio.muted = false;
     });
 }
