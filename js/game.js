@@ -23,6 +23,11 @@ let runOutOfBottlesDiv = document.getElementById('runOutOfBottlesDiv')
 let game_sound = new Audio('audio/backgroundmusic.ogg')
 pushAudioIntoArray(game_sound)
 
+
+/**
+ * Sets the CSS classes that are needed when entering/exiting Fullscreen via ESC button
+ * 
+ */
 document.addEventListener('fullscreenchange', () => {
     if (document.fullscreenElement === null) {
         // Vollbildmodus wurde deaktiviert
@@ -35,6 +40,11 @@ document.addEventListener('fullscreenchange', () => {
     }
 });
 
+
+/**
+ * Start the game for the first time
+ * 
+ */
 function startGame() {
     startscreen.classList.add('d-none');
     endscreen.classList.add('d-none');
@@ -48,14 +58,21 @@ function startGame() {
     }
 }
 
+
+/**
+ * Restarts the game
+ * 
+ */
 function restartGame() {
     gameRestarted = true;
     startGame();
-    // if (soundOn) {
-    //     game_sound.play();
-    // }
 }
 
+
+/**
+ * Ends the game
+ * 
+ */
 function endGame(x) {
     clearAllIntervals()
     game_sound.pause();
@@ -68,27 +85,43 @@ function endGame(x) {
     }
 }
 
+
+/**
+ * Brings the player back to the startscreen
+ * 
+ */
 function goBackToStartscreen() {
     endscreen.classList.add('d-none');
     startscreen.classList.remove('d-none');
-
 }
 
 
+/**
+ * Initialize new level and world
+ * 
+ */
 function init() {
     initLevel();
     world = new World(canvas, keyboard);
     if (!gameRestarted) {
         toggleSound();
     }
-
 }
 
 
+/**
+ * Clears all intervals after a games has ended
+ * 
+ */
 function clearAllIntervals() {
-    for (let i = 1; i < 9999; i++) window.clearInterval(i);
+    for (let i = 1; i < 99999; i++) window.clearInterval(i);
 }
 
+
+/**
+ * Toggles the fullscreenmodus
+ * 
+ */
 function toggleFullscreen() {
     if (!fullscreenOpend) {
         enterFullscreen(fullscreen);
@@ -102,6 +135,10 @@ function toggleFullscreen() {
 }
 
 
+/**
+ * Sets the CSS classes that are needed when entering/exiting Fullscreen
+ * 
+ */
 function setFullscreenCSS(x) {
     startscreen.classList[x]('enterFullscreen');
     endscreen.classList[x]('enterFullscreen');
@@ -117,6 +154,10 @@ function setFullscreenCSS(x) {
 }
 
 
+/**
+ * Enter Fullscreen
+ * 
+ */
 function enterFullscreen(element) {
     if (element.requestFullscreen) {
         element.requestFullscreen();
@@ -127,6 +168,11 @@ function enterFullscreen(element) {
     }
 }
 
+
+/**
+ * Exit Fullscreen
+ * 
+ */
 function exitFullscreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -135,11 +181,20 @@ function exitFullscreen() {
     }
 }
 
+
+/**
+ * Toggle infoscreen visibility
+ * 
+ */
 function toggleInfoscreen(x) {
     infoscreen.classList[x]('d-none');
 }
 
 
+/**
+ * Mutes / Plays SFX & music
+ * 
+ */
 function toggleSound() {
     if (world && !soundOn && !soundCheckedAfterInit) {
         game_sound.pause();
@@ -148,7 +203,6 @@ function toggleSound() {
     }
     else if (!soundOn) {
         speakerIMG.src = "img/speaker.png"
-
         if (!soundCheckedAfterInit) {
             soundCheckedAfterInit = true;
         } else {
@@ -164,17 +218,30 @@ function toggleSound() {
     }
 }
 
+/**
+ * Pushes every newly created audio into the audio array
+ * 
+ */
 function pushAudioIntoArray(x) {
     audio.push(x)
 }
 
 
+/**
+ * Mutes everything in the audio array
+ * 
+ */
 function muteAll() {
     audio.forEach(function (audio) {
         audio.muted = true;
     });
 }
 
+
+/**
+ * Plays everything in the audio array
+ * 
+ */
 function unmuteAll() {
     audio.forEach(function (audio) {
         audio.muted = false;
