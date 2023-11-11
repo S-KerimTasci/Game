@@ -251,8 +251,14 @@ class World {
      * 
      */
         createThrowableObject() {
-        let bottle = new ThrowableObject(this.character.x + 80, this.character.y + 50, this)
-        this.throwableObject.push(bottle);
+            if (this.character.otherDirection) {
+                let bottle = new ThrowableObject(this.character.x, this.character.y + 50, this)
+                this.throwableObject.push(bottle);
+            } else {
+                let bottle = new ThrowableObject(this.character.x + 80, this.character.y + 50, this)
+                this.throwableObject.push(bottle);
+            }
+        
     }
 
 

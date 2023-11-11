@@ -50,7 +50,9 @@ class ThrowableObject extends MovableObject {
     throw() {
         if (this.world.character.collectedSalsaBottles > 0) {
             this.world.character.collectedSalsaBottles--;
+
             this.speedY = 15;
+            
             this.applyGravity();
 
             this.animateBottleThrow();
@@ -69,7 +71,11 @@ class ThrowableObject extends MovableObject {
             this.playAnimation(this.imagesFlying)
         }, 60);
         this.id4 = setInterval(() => {
-            this.x += 10;
+            if (this.world.character.otherDirection) {
+                this.x -= 10;
+            } else {
+                this.x += 10;
+            }
         }, 1000 / 50);
     }
 
