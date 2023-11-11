@@ -3,7 +3,7 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     energy = 100;
     lastHit = 0;
-    accelaration = 1.5;
+    accelaration = 2;
 
     deadEnemy = false;
 
@@ -57,9 +57,9 @@ class MovableObject extends DrawableObject {
      */
     moveRight() {
         this.x += this.speed;
-        if (this.y > 160) {
+        if (this.y > 150) {
             this.speedY = 0;
-            this.y = 160;
+            this.y = 150;
         }
     }
 
@@ -70,9 +70,9 @@ class MovableObject extends DrawableObject {
      */
     moveLeft() {
         this.x -= this.speed;
-        if (this instanceof Character && this.y > 160) {
+        if (this instanceof Character && this.y > 150) {
             this.speedY = 0;
-            this.y = 160;
+            this.y = 150;
         }
     }
 
@@ -86,8 +86,9 @@ class MovableObject extends DrawableObject {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.accelaration;
+                console.log(this.y)
             }
-        }, 1000 / 40)
+        }, 1000 / 25)
     }
 
 
@@ -99,7 +100,7 @@ class MovableObject extends DrawableObject {
         if (this instanceof ThrowableObject) {
             return this.y < 360;
         } else {
-            return this.y < 160;
+            return this.y < 150;
         }
     }
 
