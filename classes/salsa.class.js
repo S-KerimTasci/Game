@@ -5,7 +5,7 @@ class Salsa extends MovableObject{
     y = 330;
 
     offset ={
-        top:10,
+        top:0,
         bottom:10,
         left:20,
         right:30

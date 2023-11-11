@@ -146,7 +146,7 @@ class World {
 
         setInterval(() => {
             this.checkCollisionWithEnemies();
-        }, 50);
+        }, 25);
     }
 
 
