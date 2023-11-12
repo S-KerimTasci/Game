@@ -49,14 +49,7 @@ document.addEventListener('fullscreenchange', () => {
  * 
  */
 function startGame() {
-    startscreen.classList.add('d-none');
-    endscreen.classList.add('d-none');
-    permanentBTNdiv.classList.remove('permanentBTNdiv');
-    permanentBTNdiv.classList.add('permanentBTNdivInGame')
-    runOutOfBottlesDiv.classList.add('d-none')
-    lostDiv.classList.add('d-none')
-    wonDiv.classList.add('d-none')
-    hud.classList.remove('d-none');
+    setStartGameCSS();
     init();
     if (soundOn) {
         game_sound.play();
@@ -259,4 +252,17 @@ function unmuteAll() {
 }
 
 
-
+/**
+ * Sets the CSS classes needed for starting the game
+ * 
+ */
+function setStartGameCSS() {
+    startscreen.classList.add('d-none');
+    endscreen.classList.add('d-none');
+    permanentBTNdiv.classList.remove('permanentBTNdiv');
+    permanentBTNdiv.classList.add('permanentBTNdivInGame')
+    runOutOfBottlesDiv.classList.add('d-none')
+    lostDiv.classList.add('d-none')
+    wonDiv.classList.add('d-none')
+    hud.classList.remove('d-none');
+}
