@@ -20,6 +20,8 @@ let speakerIMG = document.getElementById('speakerIMG');
 let permanentBTNdiv = document.getElementById('permanentBTNdiv');
 let hud = document.getElementById('hud');
 let runOutOfBottlesDiv = document.getElementById('runOutOfBottlesDiv');
+let lostDiv = document.getElementById('lostDiv');
+let wonDiv = document.getElementById('wonDiv');
 
 let game_sound = new Audio('audio/backgroundmusic.ogg');
 pushAudioIntoArray(game_sound);
@@ -52,6 +54,8 @@ function startGame() {
     permanentBTNdiv.classList.remove('permanentBTNdiv');
     permanentBTNdiv.classList.add('permanentBTNdivInGame')
     runOutOfBottlesDiv.classList.add('d-none')
+    lostDiv.classList.add('d-none')
+    wonDiv.classList.add('d-none')
     hud.classList.remove('d-none');
     init();
     if (soundOn) {
@@ -83,6 +87,10 @@ function endGame(x) {
     hud.classList.add('d-none');
     if (x == true) {
         runOutOfBottlesDiv.classList.remove('d-none')
+    } else if (x == 'gameWon') {
+        wonDiv.classList.remove('d-none')
+    } else if (x == 'gameLost') {
+        lostDiv.classList.remove('d-none')
     }
 }
 

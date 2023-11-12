@@ -12,6 +12,8 @@ class World {
     throwableObject = [];
     firstContact = false;
     bottlesEmpty = false;
+    gameWon = 'gameWon';
+    gameLost = 'gameLost'
 
     MAX_SALSA_BOTTLES = countSalsaObjects(level1.object);
 

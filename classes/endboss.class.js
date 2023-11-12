@@ -149,7 +149,7 @@ class Endboss extends MovableObject {
      */
     winGame() {
         world.killEnemy(this);
-        endGame();
+        endGame(world.gameWon);
         this.game_win_sound.play();
     }
 }

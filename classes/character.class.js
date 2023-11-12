@@ -167,10 +167,16 @@ class Character extends MovableObject {
      * 
      */
     loseGame() {
-
+        if (this.world.bottlesEmpty) {
+            let x = this.world.bottlesEmpty;
+            endGame(x);
+        } else if (this.world.gameLost) {
+            let x = this.world.gameLost;
+            endGame(x);
+        } 
         clearInterval(this.id6);
         this.dying_sound.play();
-        endGame(this.world.bottlesEmpty);
+        
         this.game_lost_sound.play();
     }
 }
