@@ -176,7 +176,6 @@ class Character extends MovableObject {
         } 
         clearInterval(this.id6);
         this.dying_sound.play();
-        
         this.game_lost_sound.play();
     }
 }
