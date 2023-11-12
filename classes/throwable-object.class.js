@@ -17,6 +17,8 @@ class ThrowableObject extends MovableObject {
 
     glas_shatter_sound = new Audio('audio/glas_shatter.mp3')
 
+    initialDirection;
+
     constructor(x, y, world) {
         super().loadIMG('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
         this.x = x;
@@ -25,6 +27,8 @@ class ThrowableObject extends MovableObject {
         this.width = 80;
         this.world = world;
         this.throw(100, 100);
+
+        this.initialDirection = world.character.otherDirection;
 
         this.loadImages(this.imagesFlying)
         this.loadImages(this.imagesSplash)
@@ -68,10 +72,10 @@ class ThrowableObject extends MovableObject {
      */
     animateBottleThrow(){
         this.id3 = setInterval(() => {
-            this.playAnimation(this.imagesFlying)
+            this.playAnimation(this.imagesFlying);
         }, 60);
         this.id4 = setInterval(() => {
-            if (this.world.character.otherDirection) {
+            if (this.initialDirection) {
                 this.x -= 10;
             } else {
                 this.x += 10;

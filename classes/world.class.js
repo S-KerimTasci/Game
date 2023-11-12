@@ -136,8 +136,8 @@ class World {
 
 
     /**
-     * 
      * Runs all intervalls that are needed for the game
+     * 
      */
     run() {
         setInterval(() => {

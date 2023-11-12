@@ -41,6 +41,13 @@ button {
     height: 100vh !important;
 }
 
+.rotate{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .fullscreen {
     position: relative;
     width: 720px;
@@ -300,4 +307,16 @@ button {
     .infoscreen_element_div {
         font-size: 0.7em;
     }   
+}
+
+@media (max-width: 720px) {
+    .fullscreen{
+        display: none;
+    }
+}
+
+@media (min-width: 720px) {
+    .rotate{
+        display: none;
+    }
 }

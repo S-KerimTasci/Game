@@ -89,7 +89,6 @@ class Character extends MovableObject {
         pushAudioIntoArray(this.hurt_sound);
         pushAudioIntoArray(this.dying_sound);
         pushAudioIntoArray(this.game_lost_sound);
-
     }
 
 
