@@ -103,12 +103,29 @@ class Keyboard {
  */
 keyKeyupEvent() {
     window.addEventListener("keyup", (e) => {
-        this.RIGHT = false;
-        this.LEFT = false;
-        this.UP = false;
-        this.DOWN = false;
-        this.SPACE = false;
-        this.ACTION = false;
+        if (e.keyCode == 39) {
+            this.RIGHT = false;
+        }
+
+        if (e.keyCode == 37) {
+            this.LEFT = false;
+        }
+
+        if (e.keyCode == 38) {
+            this.UP = false;
+        }
+
+        if (e.keyCode == 40) {
+            this.DOWN = false;
+        }
+
+        if (e.keyCode == 32) {
+            this.SPACE = false;
+        }
+
+        if (e.keyCode == 69) {
+            this.ACTION = false;
+        }
     })
 }
 }
