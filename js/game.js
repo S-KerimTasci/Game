@@ -23,7 +23,7 @@ let runOutOfBottlesDiv = document.getElementById('runOutOfBottlesDiv');
 let lostDiv = document.getElementById('lostDiv');
 let wonDiv = document.getElementById('wonDiv');
 
-let game_sound = new Audio('audio/backgroundmusic.ogg');
+let game_sound = new Audio('audio/backgroundmusic.mp3');
 pushAudioIntoArray(game_sound);
 
 

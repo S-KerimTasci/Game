@@ -74,6 +74,7 @@ class Character extends MovableObject {
     dying_sound = new Audio('audio/dying.mp3');
     game_lost_sound = new Audio('audio/game_lost.mp3');
 
+    firstMove = false;
 
     constructor() {
         super().loadIMG('img/2_character_pepe/2_walk/W-21.png')
@@ -123,7 +124,9 @@ class Character extends MovableObject {
      */
     animateCharacterIMG() {
         this.id6 = setInterval(() => {
-            this.walking_sound.pause();
+            if (this.firstMove) {
+                this.firstMove = false;
+            } else {               
             if (this.isDead()) {
                 this.killCharacter();
                 if (this.currentImage == this.imagesDead.length) {
@@ -140,10 +143,13 @@ class Character extends MovableObject {
                 this.walking_sound.play();
             } else {
                 this.playAnimation(this.imagesIdle)
+                this.walking_sound.pause();
+            }
             }
         }, 50)
     }
 
+  
 
     /**
      * Kills character
