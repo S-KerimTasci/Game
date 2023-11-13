@@ -146,7 +146,7 @@ class Character extends MovableObject {
                 this.walking_sound.pause();
             }
             }
-        }, 50)
+        }, 100)
     }
 
   
