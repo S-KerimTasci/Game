@@ -285,6 +285,10 @@ button {
         height: 38px !important;
         width: 38px !important;
     }
+
+    .fullscreen{
+        display: none;
+    }
 }
 
 @media (max-width: 450px) {
@@ -309,13 +313,7 @@ button {
     }   
 }
 
-@media (max-width: 720px) {
-    .fullscreen{
-        display: none;
-    }
-}
-
-@media (min-width: 720px) {
+@media (min-width: 500px) {
     .rotate{
         display: none;
     }
