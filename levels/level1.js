@@ -60,6 +60,9 @@ function initLevel() {
             new Salsa(),
             new Salsa(),
             new Salsa(),
+            new Salsa(),
+            new Salsa(),
+            new Salsa(),
         ]
     )
 }
